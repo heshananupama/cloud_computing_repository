@@ -61,27 +61,17 @@ In order to compare VMs and containers, we will
 
 % Related work. For example, prior work that looked at similar problems or used similar techniques to what you are proposing. Focusing on the key differences between what you want to do and what have been done. This is an important aspect of the proposal that helps convince yourselves and me that spending 10 weeks on the project is worthwhile. 
 
-- Containers and Virtual Machines at Scale: A Comparative Study
-  - this paper used 5 different workloads; nothing ML related
-  - tested VMs vs containers on bare metal and also containers inside VMs
-    - concluded that containers have similar performance to VMs, except for disk IO, but VMs provide better isolation
-  - Containers can't be used for multitenancy
-  - Lightweight VMs reduce start up time (maybe try using Clear Linux)
-  - VMs can do live migration, but cloud end-users likely don't need this feature when working with containers
-  - container images have faster build time, smaller size, and versioning
+"Containers and Virtual Machines at Scale: A Comparative Study" by Chaufournier et al compares VMs and containers on bare metal using five different workloads. They concluded that containers have similar performance in most areas except disk I/O, but VMs provide better isolation. Due to this, containers are not yet ready for multitenancy, which is why cloud providers primarily use VMs as an abstraction and don't provide a shared container service on bare metal. VMs can also do live migration, making it more suitable for the provider, since they often need to defragment their VMs. This also means cloud end-users don't need to worry about this. The paper also benchmarked containers running on VMs, and concluded there's actually as performance benefit due to the soft limits container provide. Containers also allow for faster building of images, smaller image size, and versioning of images. Another option they mentioned were lightweight VM that have a slimmed down kernel.
 
-https://ieeexplore.ieee.org/abstract/document/7095802
+We want to focus on the best approach to cloud computing for end users, and so will run our benchmarks on the cloud, which differs from this paper. We will also be comparing VMs against containers running on VMs, since cloud users don't have a bare-metal container option. We also want to use realistic workloads, which this paper only partially does. Specifically, we want to include ML training and inference tasks. The paper shows many benefits of using containers, so we want to see how they perform in the cloud and if they're a good option.
+
+"An Updated Performance Comparison of Virtual Machines and Linux Containers" by Felter et al confirms the finding that containers have only a small performance cost versus bare metal. They use Docker instead of LXC, which is what we plan to use. Our work will differ in that we want to see if running containers on top of VMs in a cloud environment has any significant drawbacks.
 
 \section{Solution and Design}
 
-- Fargate (on ECS) for containers and EC2 for VMs
-- use cloudwatch for metrics
-- Workloads
-  - https://github.com/GoogleCloudPlatform/PerfKitBenchmarker
-  - https://mlperf.org/training-overview (does both training and inference)
-  - https://github.com/uillianluiz/RUBiS
-  - https://github.com/brianfrankcooper/YCSB/
+In order to compare VMs and container running on VMs, we plan to run a handful of benchmarking tools in two different environments and compare the results. We plan to use the following benchmarking tools: PerfKit Benchmarker (https://github.com/GoogleCloudPlatform/PerfKitBenchmarker), MLPerf (https://mlperf.org/), RUBiS (https://github.com/uillianluiz/RUBiS), and YCSB (https://github.com/brianfrankcooper/YCSB/). The last two are also used in previous work, and represent realistic workloads. It would be useful to see how these compare to the original work, but in a cloud environment. ML workloads are very popular nowadays, and so we include MLPerf to test both training and inference performance.
 
+For VMs, we plan to use AWS EC2, a traditional virtualized-hardware platform. We will create a VM image (AMI) for each benchmarking tool and run each on a single instance.  For containers, we will create Dockerfiles to build images to run on AWS Fargate (on top of ECS), a serverless platform for running containers. For the base operating system, we will use Ubuntu 18.04 for both the AMI and Docker image. To measure start up latencies, we plan to write a Python script that start an instance using the AWS API and measures the time until it is ready. We will write a similar script for containers, and for cold and warm start ups for both.
 
 \section{Plan of Work}
 
@@ -139,12 +129,7 @@ Work on presentation
 
 \section{Evaluation Methodology}
 
-- Compare results data from each benchmarking tool, if provided
-- Compare resource usage data from Cloudwatch
-- Metrics to compare:
-  - How long the benchmark took to run
-  - Utilization over time for each resource
-  - Startup latency when scaling the amount of work
+For results, we will use those provided by the different benchmarking tools, in addition to AWS CloudWatch metrics, to create an overall performance profile for VMs and containers. Specific metrics we want to compare are: utilization over time for each hardware resource (CPU, memory, and disk), throughput for each resource, the total time each benchmark took to run, and how long each instance took to start up. For both VMs and containers, we want to measure both cold start and warm start latency. This is important since AWS does not charge compute fees for stopped instances. Utilization and throughput will paint a picture of how efficiently each platform manages resources, while total benchmark time will determine which is best for a specific task. Lastly, the startup time will tell us how quickly each is able to scale.
 
 \section{Division of Work}
 
