@@ -42,15 +42,18 @@
 
 % Problem statement and motivation for the problem.
 
-Cloud is becoming more and more popular in the present world and the traditional on premise servers are moving towards the cloud in a rapid manner. Cloud providers need to share their resources in an efficient manner mainly by utilizing resources as much as possible. While doing so, they need all the work to be transparent from customers and as well as to give a better service in order to compete with the other providers. Virtualization via containers and the virtual machines are the two main methods that are used by the cloud providers to provision the services to customers. Most of the related work in the area had compared the two technologies mainly from the view of cloud providers. i.e. what would be the best technology for the cloud providers to gain the maximum. 
+Cloud is becoming more and more popular in the present world and the traditional on-premise servers are moving towards the cloud in a rapid manner. Cloud providers need to share their resources in an efficient manner mainly by utilizing resources as much as possible. While doing so, they need also need the work to be transparent to customers and give a better service in order to compete with other providers. Virtualization via containers and virtual machines are the two main methods that are used by cloud providers to provision customers' services. Most of the related work in the area has compared the two technologies from the point of view of cloud providers, i.e. which technology has the most benefit for cloud providers.
 
-However, we didn't notice a solid comparison that is done from the role of the customer. i.e. Which technology would give the best to the customers. Taking this in to account, in our project, our goal is to compare realistic usage of virtual machines and containers in the cloud for end users. VMs are a necessity for cloud computing because providers need to share their resources between customers, which means customers are forced to use them. However, containers have proven to have several benefits in terms the application development lifecycle, making them appealing to cloud users. We look forward to analyzing between the two using different performance metrics and also benchmarks. We hope to focus towards the machine learning workloads, as it is becoming famous and the papers that we read haven't taken machine learning model in to account when they compared the two technologies. 
+However, we didn't notice a solid comparison that is done from the role of the customer, i.e. which technology would benefit them the most. Taking this into account, in our project, our goal is to compare realistic usage of virtual machines and containers in the cloud for end users. VMs are a necessity for cloud computing because providers need to share their resources between customers, which means customers are forced to use them. However, containers have proven to have several benefits in terms of the application development lifecycle, making them appealing to cloud users. Our project aims to compare the two using different performance metrics and benchmarks. Among these, we plan to include machine learning workloads, as they are essential to modern computing, and the work we've come across hasn't taken machine learning models into account when comparing the two technologies.
 
 \section{Related Work}
 
 % Related work. For example, prior work that looked at similar problems or used similar techniques to what you are proposing. Focusing on the key differences between what you want to do and what have been done. This is an important aspect of the proposal that helps convince yourselves and me that spending 10 weeks on the project is worthwhile. 
 
-"Containers and Virtual Machines at Scale: A Comparative Study" by Chaufournier et al compares VMs and containers on bare metal using five different workloads. They concluded that containers have similar performance in most areas except disk I/O, but VMs provide better isolation. Due to this, containers are not yet ready for multitenancy, which is why cloud providers primarily use VMs as an abstraction and don't provide a shared container service on bare metal. VMs can also do live migration, making it more suitable for the provider, since they often need to defragment their VMs. This also means cloud end-users don't need to worry about this. The paper also benchmarked containers running on VMs, and concluded there's actually as performance benefit due to the soft limits container provide. Containers also allow for faster building of images, smaller image size, and versioning of images. Another option they mentioned were lightweight VM that have a slimmed down kernel.
+"Containers and Virtual Machines at Scale: A Comparative Study" by Chaufournier et al compares VMs and containers on bare metal using five different workloads.
+They concluded that containers have similar performance in most areas except disk I/O, but VMs provide better isolation.
+Due to this, containers are not yet ready for multitenancy, which is why cloud providers primarily use VMs as an abstraction and don't provide a shared container service on bare metal. VMs can also do live migration, making it more suitable for the provider, since they often need to defragment their VMs.
+This also means cloud end users don't need to worry about this. The paper also benchmarked containers running on VMs, and concluded there's actually a performance benefit due to the soft limits container provide. Containers also allow for faster building of images, smaller image size, and versioning of images. Another option they mentioned was a lightweight VM that has a slimmed down kernel.
 
 We want to focus on the best approach to cloud computing for end users, and so will run our benchmarks on the cloud, which differs from this paper. We will also be comparing VMs against containers running on VMs, since cloud users don't have a bare-metal container option. We also want to use realistic workloads, which this paper only partially does. Specifically, we want to include ML training and inference tasks. The paper shows many benefits of using containers, so we want to see how they perform in the cloud and if they're a good option.
 
@@ -58,36 +61,40 @@ We want to focus on the best approach to cloud computing for end users, and so w
 
 \section{Solution and Design}
 
-In order to compare VMs and container running on VMs, we plan to run a handful of benchmarking tools in two different environments and compare the results. We plan to use the following benchmarking tools: PerfKit Benchmarker (https://github.com/GoogleCloudPlatform/PerfKitBenchmarker), MLPerf (https://mlperf.org/), RUBiS (https://github.com/uillianluiz/RUBiS), and YCSB (https://github.com/brianfrankcooper/YCSB/). The last two are also used in previous work, and represent realistic workloads. It would be useful to see how these compare to the original work, but in a cloud environment. ML workloads are very popular nowadays, and so we include MLPerf to test both training and inference performance.
+In order to compare VMs and container running on VMs, we plan to run a handful of benchmarking tools in two different environments and compare the results. We plan to use the following benchmarking tools: PerfKit Benchmarker [1], MLPerf [2], RUBiS [3], and YCSB [4]. The last two are also used in previous work, and represent realistic workloads. It would be useful to see how these compare to the original work, but in a cloud environment. ML workloads are very popular nowadays, and so we include MLPerf to test both training and inference performance.
 
-For VMs, we plan to use AWS EC2, a traditional virtualized-hardware platform. We will create a VM image (AMI) for each benchmarking tool and run each on a single instance.  For containers, we will create Dockerfiles to build images to run on AWS Fargate (on top of ECS), a serverless platform for running containers. For the base operating system, we will use Ubuntu 18.04 for both the AMI and Docker image. To measure start up latencies, we plan to write a Python script that start an instance using the AWS API and measures the time until it is ready. We will write a similar script for containers, and for cold and warm start ups for both.
+For VMs, we plan to use AWS EC2, a traditional virtualized-hardware platform. We will create a VM image (AMI) for each benchmarking tool and run each on a single instance.  For containers, we will create Dockerfiles to build images to run on AWS Fargate (on top of ECS), a serverless platform for running containers. For the base operating system, we will use Ubuntu 18.04 for both the AMI and Docker image. To measure start up latencies, we plan to write a Python script that starts an instance using the AWS API and measures the time until it is ready. We will write a similar script for containers, and for cold and warm start ups for both.
 
 \section{Plan of Work}
 
 % Plan of work. What key questions do you need to answer? How would you implement your solution? What type of resources do you need, e.g., machines, other equipment, access to datasets ? What are the expected timeline? 
 
-First of all, we hope to set up the AWS accounts (student) using WPI credentials. We hope to carry out our comparison in two phases. At the initial phase, we are going to create the container images and VM images for the MLperf and Rubis. Then we are going to try it and running it on the AWS. For running, we hope to run the container on the Fargate while setting up the EC2 for the VM and we want to make sure to allocate resources equally. Most probably, the results would be provided by the tools itself, but additionally, we were thinking to use cloudwatch to double check the validity and to get more results. Completing these steps will make one complete cycle of workflow and we hope to repeat the same cycle for the other two benchmarks, PerfKit and YCSB. If time permits, we are thinking to setup autoscaling groups that would help us to carry out a benchmark test to find out the scalability. Following is a rough time plan for our working-: 
+First of all, we plan to set up our AWS accounts using WPI credentials for student credits. We plan to carry out our comparison in two phases. During the initial phase, we are going to create the container images and VM images for MLperf and Rubis. Then we are going to deploy both to AWS. For running containers, we plan to use AWS Fargate, and AWS EC2 for VMs. We want to make sure to allocate resources equally. Most of the results will likely be provided by the tools themselves, but we are also planning to use CloudWatch to double check the validity with additional data. Completing these steps will make one complete cycle of our workflow and we plan to repeat the same cycle for the other two benchmarks: PerfKit and YCSB. Lastly, we plan to measure the various startup times to test the scalability. The following is a rough timeline of our work:
 
-2/10 - 2/17: Setup AWS accounts with student credits, build up foundational knowledge of VM's and containers
+\begin{itemize}
+\itemsep-2pt
 
-2/17 - 3/2: Create container image and VM image for MLperf (Mike), create container image and VM image for Rubis (Heshan)
+\item 2/10 - 2/17: Setup AWS accounts with student credits; build up foundational knowledge of VM's and containers
 
-3/2 - 3/9: Run VM on AWS EC2
+\item 2/17 - 3/2: Create container image and VM image for MLperf (Mike); create container image and VM image for Rubis (Heshan)
 
-3/9 - 3/16: Gather metrics from tools and AWS Cloudwatch.
+\item 3/2 - 3/9: Run VMs and containers with benchmarks (figure out how to equally allocate resources)
 
-3/16 - 3/23:  Work on mid term review, (stretch) setup autoscaling groups for scaling benchmark
+\item 3/9 - 3/16: Gather metrics from tools and AWS CloudWatch.
 
-3/23: Mid term review
+\item 3/16 - 3/23: Work on mid term review; start writing scripts for measuring startup time
 
-3/23 - 4/6: Create container image and VM image for PerfKit (Mike), Create container image and VM image for YCSB (Heshan), (stretch) Create images that can serve requests for a fixed workload, (stretch) Write script that sends an increasing number of requests over a period of time.
+\item 3/23: Mid term review
 
-4/13 - 4/20: Run VM on AWS EC2 (figure out how to equally allocate resources), gather metrics from tool and AWS Cloudwatch
+\item 3/23 - 4/6: Create container image and VM image for PerfKit (Mike); Create container image and VM image for YCSB (Heshan); finish scripts for measuring startup time
 
-4/20: Presentation
+\item 4/13 - 4/20: Run VMs and containers with benchmarks; gather metrics from tools and AWS Cloudwatch
 
-4/20 - 4/27: Final report
+\item 4/20: Presentation
 
+\item 4/20 - 4/27: Final report
+
+\end{itemize}
 
 \section{Evaluation Methodology}
 
@@ -95,16 +102,16 @@ For results, we will use those provided by the different benchmarking tools, in 
 
 \section{Division of Work}
 
-We hope to split work by workloads, so we both get experience with both VMs and containers and associated technologies. Following are rough way that we were thinking to divide our work-: 
+We plan to split work by workloads, so we both get experience with both VMs and containers and associated technologies. We plan to split up the workloads as follows: Mike doing [1] and [2]; Heshan doing [3] and [4]. For each, we will do all the work including deploying, running, gathering the data, and analyzing the data. For the midterm, presentation, and final report, we will split the work evenly, each mostly focused on the benchmarks assign to us.
 
+\hspace{16pt}
 
-Mike 
+[1] https://github.com/GoogleCloudPlatform/PerfKitBenchmarker
 
-  - https://github.com/GoogleCloudPlatform/PerfKitBenchmarker
-  - https://mlperf.org/training-overview (does both training and inference)
+[2] https://mlperf.org
 
-Heshan
-  - https://github.com/uillianluiz/RUBiS
-  - https://github.com/brianfrankcooper/YCSB/
+[3] https://github.com/uillianluiz/RUBiS
+
+[4] https://github.com/brianfrankcooper/YCSB
 
 \end{document}
