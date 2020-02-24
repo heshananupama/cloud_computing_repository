@@ -1,0 +1,3 @@
+[submodule "images/gbm-perf"]
+	path = images/gbm-perf
+	url = git@github.com:mluds/GBM-perf.git
