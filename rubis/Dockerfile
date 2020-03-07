@@ -18,6 +18,4 @@ COPY rubis.properties ./RUBiS-master/Client/rubis.properties
 COPY run.sh .
 RUN chmod +x run.sh
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-CMD /usr/bin/supervisord
+CMD cd /app/RUBiS-master; sh /app/run.sh
