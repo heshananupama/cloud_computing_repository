@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+
+\def\baselinestretch{1}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{fancyhdr}  % for displaying head/foot meta info 
+\usepackage{pagecounting}
+\usepackage{color}
+\usepackage[yyyymmdd,hhmmss]{datetime}  % for using currenttime command 
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{lipsum}
+
+\newcommand\bb[1]{\mbox{\em #1}}
+\newcommand{\eat}[1]{}
+\newcommand{\hsp}{\hspace*{\parindent}}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+
+
+\titleformat{\section}{\vspace{- 0.5 \baselineskip}\normalfont\fontsize{12}{12}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\vspace{- 0.5 \baselineskip}\normalfont\fontsize{11}{11}\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt} 
+\pagestyle{fancy}
+\cfoot{}
+\lhead{}
+\rhead{}
+\rfoot{\itshape\textcolor{gray}{Page \thepage\ of \pageref{LastPage}}}
+\lfoot{\itshape\textcolor{gray}{CS525T Cloud Computing Paper Review}}
+
+%%% Fill in the paper information %%%
+\begin{center}
+{\LARGE \bf Midterm Review: Comparison Between Virtual Machines and Containers for Cloud End Users} \\
+{\normalsize \emph{Heshan Perera, Michael Ludwig}}\\
+
+\end{center}
+
+\section{Project Log}
+
+So far our project is on track, with some changes to our selection of benchmarks. We tried moving forward with MLPerf, however the implementations are all written for GPUs. Although both AWS EC2 and ECS support instances with GPUs, they are prohibitively expensive to work with while using the AWS Educate accounts. Instead, we ended up using a benchmark called gbmperf, which trains a model using three different gradient boosting libraries. This gives a realistic workload for standard ML use cases.
+
+(using sysbench to test resource specific workloads)
+
+\section{Complete Work}
+
+At this point we have two different benchmarks running in AWS on both VMs and containers. We created AWS Educate accounts to do this. In order to run the benchmarks consistently over several runs, we created virtual machine images (AMIs) and Docker images. The gbmperf source code had an existing Dockerfile to create the image, however some fixes needed to be made to get it to run smoothly. To run on an EC2 instance, the installation commands needed to be adapted, such as to install R and other dependencies. In order to run gbmperf on startup, it was run as a systemd service. This also makes it easy to restart for multiple runs. Since ECS handles starting containers, nothing was needed to be done for the gbmperf Docker image.
+
+For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. For EC2 instances however, a separate process needs to be installed to send the metrics to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called cloudwatch-dump. This required a modification to download fine-grained periods of data (ten seconds).
+
+For evaluating gbmperf, the benchmark was run five times each on VMs and containers. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison.
+
+(include results here)
+
+\section{Unfinished Work}
+
+(second benchmark, sysbench, explanation for performance differences/similarities)
+
+\section{Major Barriers}
+
+
+\hspace{16pt}
+
+[1] https://github.com/szilard/GBM-perf
+[2] https://github.com/mogproject/cloudwatch-dump
+
+
+\end{document}
