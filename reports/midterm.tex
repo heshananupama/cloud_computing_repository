@@ -42,7 +42,7 @@
 
 So far our project is on track, with some changes to our selection of benchmarks. We tried moving forward with MLPerf, however the implementations are all written for GPUs. Although both AWS EC2 and ECS support instances with GPUs, they are prohibitively expensive to work with while using the AWS Educate accounts. Instead, we ended up using a benchmark called gbmperf, which trains a model using three different gradient boosting libraries. This gives a realistic workload for standard ML use cases.
 
-(using sysbench to test resource specific workloads)
+An additional step we would like to add to our project is using sysbench or another similar tool to benchmark specific resources in order to see which, if any, have different performance. This will help explain any disparities in the other benchmark results.
 
 \section{Complete Work}
 
@@ -56,10 +56,15 @@ For evaluating gbmperf, the benchmark was run five times each on VMs and contain
 
 \section{Unfinished Work}
 
-(second benchmark, sysbench, explanation for performance differences/similarities)
+The main work to complete is a second round of benchmarking and results. This involves installing the benchmarks in both VM and Docker images, running the benchmarks multiple times, and then compiling and polishing the results for presenting. The bulk of time will likely come from building the images and summarizing the results.
+
+After comparing benchmark results, we would like to explore reasons why differences exist, or confirm that they don't, using a tools such as sysbench. This will involve profiling the CPU, memory, and disk of the VMs and containers and comparing the results.
 
 \section{Major Barriers}
 
+So far no major barriers have been blocking us, however certain parts proved challenging. Installing RUBiS and getting it to run was difficult due to lack of documentation and the number of services it depends on to run. We needed to install MySQL, Apache, Java, and more into a single container and automate the setup.
+
+Additionally, to download metric data from AWS involved using a 3rd party utility that required modifications to get the correct fidelity of data. Instrumentation to the EC2 instances was also required to the log CPU and memory.
 
 \hspace{16pt}
 
