@@ -15,7 +15,9 @@ mysql -uroot rubis < database/regions.sql
 
 cd Client/
 make client
-make initDBSQL PARAM="all"
+make initDB PARAM="all"
 
 echo Running benchmark
 make emulator
+cat /app/RUBiS-master/Client/bench/heshan/stat_client0.html 
+
