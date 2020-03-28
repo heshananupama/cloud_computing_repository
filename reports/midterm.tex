@@ -46,42 +46,34 @@ An additional step we would like to add to our project is using sysbench or anot
 
 \section{Complete Work}
 
-For our first phase we had selected two benchmarks, gbmperf and RUBiS. RUBiS is an open-source auction site prototype modeled after eBay.com developed by Rice University. It has been widely used as a benchmark in the area of network research. The workload generated for RUBiS is a HTTP workload where the system will continuosly make requests to the auction site for a dedicated period of time. There are different implementations of the benchmark and the one that we chosen provide information related to the experiemnet in HTML tabular format. In the case of gbperf....... (may be its better to define in a statement or two about gbperf) 
+For our first phase we had selected two benchmarks, gbmperf and RUBiS. RUBiS is an open-source auction site prototype modeled after eBay.com developed by Rice University. It has been widely used as a benchmark in the area of network research. The workload generated for RUBiS is a continuous stream of HTTP requests to an auction site for a specified period of time. There are different implementations of the benchmark and the one that we chose provides information related to the experiment in HTML tabular format. In the case of gbmperf, a model is trained on 3 different models using 100k, 1m, and 10m records. The training accuracy and duration are given for each.
 
-We made sure to have the above benchmarks running in AWS on both VMs and containers. We created AWS Educate accounts to do this. In order to run the benchmarks consistently over several runs, we created virtual machine images (AMIs) and Docker images. The gbmperf source code had an existing Dockerfile to create the image, however some fixes needed to be made to get it to run smoothly. In the case of RUBiS, we needed to create the Dockerfile from the scratch. As it needed to manage multiple services like apache, MySQL we were thinking to use supervisord. However, upon closely working on the problem, we managed to do everything in a simple manner with the help of a shell script. To run on an EC2 instance, the installation commands needed to be adapted, such as to install R, MySQL and other dependencies needed from both benchmarks. In order to run gbmperf on startup, it was run as a systemd service. This also makes it easy to restart for multiple runs. However, Since ECS handles starting containers, nothing was needed to be done for the gbmperf and RUBiS Docker images.
+We made sure to have the above benchmarks running in AWS on both VMs and containers. We created AWS Educate accounts to do this. In order to run the benchmarks consistently over several runs, we created virtual machine images (AMIs) and Docker images. The gbmperf source code had an existing Dockerfile to create the image, however some fixes needed to be made to get it to run smoothly. In the case of RUBiS, we needed to create the Dockerfile from the scratch. As it needed to manage multiple services like Apache and MySQL. At first, we used supervisord to do this, however, we discovered that the Ubuntu container natively supported services, meaning we could just write a simple shell script. To run on an EC2 instance, the installation commands needed to be adapted, such as to install R, MySQL and other dependencies needed from both benchmarks. In order to run gbmperf on startup, it was run as a systemd service. This also makes it easy to restart for multiple runs. However, Since ECS handles starting containers, nothing was needed to be done for the gbmperf and RUBiS Docker images.
 
-For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. In the case of EC2 instances, you have to make sure to allow the EC2 instance to the CloudWatch upon creation of the instance. However, the metrics did only include a CPU utilization and a separate process needed to be installed to send the metrics like memory utilization to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called CloudWatch-dump. This required a modification to download fine-grained periods of data (ten seconds).
+For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. In the case of EC2 instances, permissions need to be granted to the instance for it access CloudWatch. The metrics, however, required a separately installed process on the instance to log CPU and memory utilization to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called CloudWatch-dump. This required a modification to download fine-grained periods of data (ten seconds).
 
-For evaluating gbmperf, the benchmark was run five times each on VMs and containers. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison.
+For evaluating gbmperf, the benchmark was run five times each on VMs and containers. Each VM and container was allocated 4 CPUs and 16 GB of memory. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison. From the results we found that the CPU and memory usage between the two is very similar, possibly with a small overhead on the VM side caused by other running processes.
 
-(include results here)
-(explanation/discussion on results)?
+In the case of RUBiS, the benchmark was run three times. Like gbmperf, CPU and memory utilization was averaged and graphed. As the benchmark runs longer than gbmperf, we set the period to 5 minutes as we tried to retrieve the metrics with CloudWatch-dump.
 
-In the case of RUBiS, the benchmark was run for three times. Same as for the gbmperf, CPU and memory utilization was averaged and graphed. As the benchmark runs longer than the gbmperf, we set the period to 5 minutes as we tried to retrieve the metrics with CloudWatch-dump. 
-
-(RUBiS CPU/Memory result)
-(explanation/discussion on results)?
-
-The workload generated for RUBiS is a HTTP workload where the system will continuously make HTTP requests over 40 minutes of time. RUBiS benchmark provide some results like the number of requests made for different pages of the RUBiS system, and finally provides a summary which includes the metrics like total requests made and average requests made per a second. 
-
-(results given by benchmark itself)
-(explanation/discussion on results)?
+The workload generated for RUBiS is an HTTP workload where the system will continuously make HTTP requests over 40 minutes. The RUBiS benchmark itself provides results like the number of requests made for different pages of the RUBiS auction site, and also provides a summary which includes the metrics like total requests made and average requests made per second. 
 
 \section{Unfinished Work}
 
 The main work to complete is a second round of benchmarking and results. This involves installing the benchmarks in both VM and Docker images, running the benchmarks multiple times, and then compiling and polishing the results for presenting. The bulk of time will likely come from building the images and summarizing the results.
 
-After comparing benchmark results, we would like to explore reasons why differences exist, or confirm that they don't, using a tools such as sysbench. This will involve profiling the CPU, memory, and disk of the VMs and containers and comparing the results.
+After comparing benchmark results, we would like to explore reasons why differences exist, or confirm that they don't, using tools such as sysbench. This will involve profiling the CPU, memory, and disk of the VMs and containers, then comparing the results.
 
 \section{Major Barriers}
 
 So far no major barriers have been blocking us, however certain parts proved challenging. Installing RUBiS and getting it to run was difficult due to lack of documentation and the number of services it depends on to run. We needed to install MySQL, Apache, Java, and more into a single container and automate the setup.
 
-Additionally, to download metric data from AWS involved using a 3rd party utility that required modifications to get the correct fidelity of data. Instrumentation to the EC2 instances was also required to the log CPU and memory.
+Additionally, to download metric data from AWS involved using a 3rd party utility that required modifications to get the correct fidelity of data. Instrumentation to the EC2 instances was also required to log CPU and memory.
 
 \hspace{16pt}
 
 [1] https://github.com/szilard/GBM-perf
+
 [2] https://github.com/mogproject/cloudwatch-dump
 
 
