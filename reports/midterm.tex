@@ -13,6 +13,9 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+
+\graphicspath{ {../images/rubis/} }
+
 \newcommand\bb[1]{\mbox{\em #1}}
 \newcommand{\eat}[1]{}
 \newcommand{\hsp}{\hspace*{\parindent}}
@@ -56,9 +59,9 @@ For logging CPU and memory utilization, ECS sends these metrics automatically to
 
 For evaluating gbmperf, the benchmark was run five times each on VMs and containers. Each VM and container was allocated 4 CPUs and 16 GB of memory. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison. From the results we found that the CPU and memory usage between the two is very similar, possibly with a small overhead on the VM side caused by other running processes.
 
-In the case of RUBiS, the benchmark was run three times. Like gbmperf, CPU and memory utilization was averaged and graphed. As the benchmark runs longer than gbmperf, we set the period to 5 minutes as we tried to retrieve the metrics with CloudWatch-dump. Figure 1 and 2 shows the results obtained.
+In the case of RUBiS, the benchmark was run three times. Like gbmperf, CPU and memory utilization was averaged and graphed. Since the benchmark runs longer than gbmperf, we set the period to 5 minutes for the CloudWatch-dump data. Figures 1 and 2 show the results obtained.
 
-When comparing against the utilizations between the two, it seems that ECS use both more memory and the CPU when running the tests. In general, the workload of RUBiS does gets very little amount of CPU while it takes around 20\% and 30\% of memory on average in EC2 and ECS respectively.
+Comparing the utilizations, it seems that ECS uses both more memory and more CPU when running the tests. In general, the RUBiS workload requires little CPU and memory, and only uses around 20\% and 30\% of memory on average in EC2 and ECS respectively.
 
 \begin{figure}
 \centering
@@ -76,8 +79,7 @@ When comparing against the utilizations between the two, it seems that ECS use b
 \end{minipage}
 \end{figure}
 
-The workload generated for RUBiS is an HTTP workload where the system will continuously make HTTP requests over 40 minutes. The RUBiS benchmark itself provides results like the number of requests made for different pages of the RUBiS auction site, and also provides a summary which includes the metrics like total requests made and average requests made per second. 
-
+RUBiS uses an HTTP workload, where the system will continuously make HTTP requests over 40 minutes. The RUBiS benchmark itself provides results like the number of requests made for different pages of the RUBiS auction site, and also provides a summary which includes the metrics like total requests made and average requests made per second. 
 
 
 \begin{center}
@@ -94,7 +96,7 @@ The workload generated for RUBiS is an HTTP workload where the system will conti
 \end{tabular}
 \end{center}
 
-The number of requests made when the workload is ran on ECS is quiet larger (about 12x) than the requests made with EC2. We think that the overhead of VM is much higher than the ECS. However, the CPU usage and the memory is not at the bottleneck as we observed from the usage graphs and we speculate that maybe there is a bottleneck in VM somewhere else which we try to find during the next phase.  
+The number of requests made when the workload is ran on ECS is quite larger (about 12x) than the requests made with EC2. We think that the overhead for the VM is much higher than for ECS. However, the CPU usage and memory is not bottlenecked as we observed from the usage graphs, and we speculate that there is a bottleneck in the VM somewhere else, which we'll try to find during the next phase.
 
 \section{Unfinished Work}
 
