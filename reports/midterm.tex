@@ -10,7 +10,9 @@
 \usepackage{hyperref}
 \usepackage{lastpage}
 \usepackage{lipsum}
-
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \newcommand\bb[1]{\mbox{\em #1}}
 \newcommand{\eat}[1]{}
 \newcommand{\hsp}{\hspace*{\parindent}}
@@ -50,13 +52,49 @@ For our first phase we had selected two benchmarks, gbmperf and RUBiS. RUBiS is 
 
 We made sure to have the above benchmarks running in AWS on both VMs and containers. We created AWS Educate accounts to do this. In order to run the benchmarks consistently over several runs, we created virtual machine images (AMIs) and Docker images. The gbmperf source code had an existing Dockerfile to create the image, however some fixes needed to be made to get it to run smoothly. In the case of RUBiS, we needed to create the Dockerfile from the scratch. As it needed to manage multiple services like Apache and MySQL. At first, we used supervisord to do this, however, we discovered that the Ubuntu container natively supported services, meaning we could just write a simple shell script. To run on an EC2 instance, the installation commands needed to be adapted, such as to install R, MySQL and other dependencies needed from both benchmarks. In order to run gbmperf on startup, it was run as a systemd service. This also makes it easy to restart for multiple runs. However, Since ECS handles starting containers, nothing was needed to be done for the gbmperf and RUBiS Docker images.
 
-For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. In the case of EC2 instances, permissions need to be granted to the instance for it access CloudWatch. The metrics, however, required a separately installed process on the instance to log CPU and memory utilization to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called CloudWatch-dump. This required a modification to download fine-grained periods of data (ten seconds).
+For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. In the case of EC2 instances, permissions need to be granted to the instance for it to access CloudWatch. The metrics, however, required a separately installed process on the instance to log CPU and memory utilization to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called CloudWatch-dump. This required a modification to download fine-grained periods of data (ten seconds).
 
 For evaluating gbmperf, the benchmark was run five times each on VMs and containers. Each VM and container was allocated 4 CPUs and 16 GB of memory. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison. From the results we found that the CPU and memory usage between the two is very similar, possibly with a small overhead on the VM side caused by other running processes.
 
-In the case of RUBiS, the benchmark was run three times. Like gbmperf, CPU and memory utilization was averaged and graphed. As the benchmark runs longer than gbmperf, we set the period to 5 minutes as we tried to retrieve the metrics with CloudWatch-dump.
+In the case of RUBiS, the benchmark was run three times. Like gbmperf, CPU and memory utilization was averaged and graphed. As the benchmark runs longer than gbmperf, we set the period to 5 minutes as we tried to retrieve the metrics with CloudWatch-dump. Figure 1 and 2 shows the results obtained.
+
+When comparing against the utilizations between the two, it seems that ECS use both more memory and the CPU when running the tests. In general, the workload of RUBiS does gets very little amount of CPU while it takes around 20\% and 30\% of memory on average in EC2 and ECS respectively.
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.4]{CPU_rubis}
+  \captionof{figure}{CPU Utilzation}
+  \label{ECS-CPU}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.4]{Memory_rubis}
+  \captionof{figure}{Memory Utilization}
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
 
 The workload generated for RUBiS is an HTTP workload where the system will continuously make HTTP requests over 40 minutes. The RUBiS benchmark itself provides results like the number of requests made for different pages of the RUBiS auction site, and also provides a summary which includes the metrics like total requests made and average requests made per second. 
+
+
+
+\begin{center}
+\captionof{table}{ECS \& EC2 Summary} 
+
+ \begin{tabular}{||c c c ||} 
+ \hline
+ Instance & Number of requests & Average throughput  \\ [0.5ex] 
+ \hline\hline
+ ECS & 389165 & 161 req/s  \\ 
+ \hline
+ EC2 & 34971 & 14 req/s \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+The number of requests made when the workload is ran on ECS is quiet larger (about 12x) than the requests made with EC2. We think that the overhead of VM is much higher than the ECS. However, the CPU usage and the memory is not at the bottleneck as we observed from the usage graphs and we speculate that maybe there is a bottleneck in VM somewhere else which we try to find during the next phase.  
 
 \section{Unfinished Work}
 
