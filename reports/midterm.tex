@@ -14,7 +14,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
-\graphicspath{ {../images/rubis/} }
+\graphicspath{ {../images/rubis/} {../images/gbmperf_charts/} }
 
 \newcommand\bb[1]{\mbox{\em #1}}
 \newcommand{\eat}[1]{}
@@ -45,7 +45,7 @@
 
 \section{Project Log}
 
-So far our project is on track, with some changes to our selection of benchmarks. We tried moving forward with MLPerf, however the implementations are all written for GPUs. Although both AWS EC2 and ECS support instances with GPUs, they are prohibitively expensive to work with while using the AWS Educate accounts. Instead, we ended up using a benchmark called gbmperf, which trains a model using three different gradient boosting libraries. This gives a realistic workload for standard ML use cases. We were able to move forward with the RUBiS benchmark as we had planned. 
+So far our project is on track, with some changes to our selection of benchmarks. We tried moving forward with MLPerf, however the implementations are all written for GPUs. Although both AWS EC2 and ECS support instances with GPUs, they are prohibitively expensive to work with while using the AWS Educate accounts. Instead, we ended up using a benchmark called gbmperf [1], which trains a model using three different gradient boosting libraries. This gives a realistic workload for standard ML use cases. We were able to move forward with the RUBiS benchmark as we had planned. 
 
 An additional step we would like to add to our project is using sysbench or another similar tool to benchmark specific resources in order to see which, if any, have different performance. This will help explain any disparities in the other benchmark results.
 
@@ -55,9 +55,25 @@ For our first phase we had selected two benchmarks, gbmperf and RUBiS. RUBiS is 
 
 We made sure to have the above benchmarks running in AWS on both VMs and containers. We created AWS Educate accounts to do this. In order to run the benchmarks consistently over several runs, we created virtual machine images (AMIs) and Docker images. The gbmperf source code had an existing Dockerfile to create the image, however some fixes needed to be made to get it to run smoothly. In the case of RUBiS, we needed to create the Dockerfile from the scratch. As it needed to manage multiple services like Apache and MySQL. At first, we used supervisord to do this, however, we discovered that the Ubuntu container natively supported services, meaning we could just write a simple shell script. To run on an EC2 instance, the installation commands needed to be adapted, such as to install R, MySQL and other dependencies needed from both benchmarks. In order to run gbmperf on startup, it was run as a systemd service. This also makes it easy to restart for multiple runs. However, Since ECS handles starting containers, nothing was needed to be done for the gbmperf and RUBiS Docker images.
 
-For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. In the case of EC2 instances, permissions need to be granted to the instance for it to access CloudWatch. The metrics, however, required a separately installed process on the instance to log CPU and memory utilization to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called CloudWatch-dump. This required a modification to download fine-grained periods of data (ten seconds).
+For logging CPU and memory utilization, ECS sends these metrics automatically to AWS CloudWatch. In the case of EC2 instances, permissions need to be granted to the instance for it to access CloudWatch. The metrics, however, required a separately installed process on the instance to log CPU and memory utilization to CloudWatch. This is done via a collectd plugin, which was configured to send this data every five seconds. After running the benchmarks a few times on both VMs and containers, we were able to download the metrics using a utility called CloudWatch-dump [2]. This required a modification to download fine-grained periods of data (ten seconds).
 
 For evaluating gbmperf, the benchmark was run five times each on VMs and containers. Each VM and container was allocated 4 CPUs and 16 GB of memory. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison. From the results we found that the CPU and memory usage between the two is very similar, possibly with a small overhead on the VM side caused by other running processes.
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.3]{gbmperf_cpu}
+  \captionof{figure}{gbmperf CPU Utilzation}
+  \label{CPU}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.3]{gbmperf_memory}
+  \captionof{figure}{gbmperf Memory Utilization}
+  \label{Memory}
+\end{minipage}
+\end{figure}
 
 In the case of RUBiS, each VM and container allocated 1 CPU with 2GB of memory and the benchmark was run for three times. Like gbmperf, CPU and memory utilization was averaged and graphed. Since the benchmark runs longer than gbmperf, we set the period to 5 minutes for the CloudWatch-dump data. Figures 1 and 2 show the results obtained.
 
@@ -68,13 +84,13 @@ Comparing the utilizations, it seems that ECS uses both more memory and more CPU
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.4]{CPU_rubis}
-  \captionof{figure}{CPU Utilzation}
+  \captionof{figure}{RUBiS CPU Utilzation}
   \label{CPU}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.4]{Memory_rubis}
-  \captionof{figure}{Memory Utilization}
+  \captionof{figure}{RUBiS Memory Utilization}
   \label{Memory}
 \end{minipage}
 \end{figure}
