@@ -59,7 +59,7 @@ For logging CPU and memory utilization, ECS sends these metrics automatically to
 
 For evaluating gbmperf, the benchmark was run five times each on VMs and containers. Each VM and container was allocated 4 CPUs and 16 GB of memory. The CPU and memory utilization was averaged across the runs, and graphed over time to compare the two. Although almost identical across runs, the total runtime and model accuracy was also averaged for comparison. From the results we found that the CPU and memory usage between the two is very similar, possibly with a small overhead on the VM side caused by other running processes.
 
-In the case of RUBiS, the benchmark was run three times. Like gbmperf, CPU and memory utilization was averaged and graphed. Since the benchmark runs longer than gbmperf, we set the period to 5 minutes for the CloudWatch-dump data. Figures 1 and 2 show the results obtained.
+In the case of RUBiS, each VM and container allocated 1 CPU with 2GB of memory and the benchmark was run for three times. Like gbmperf, CPU and memory utilization was averaged and graphed. Since the benchmark runs longer than gbmperf, we set the period to 5 minutes for the CloudWatch-dump data. Figures 1 and 2 show the results obtained.
 
 Comparing the utilizations, it seems that ECS uses both more memory and more CPU when running the tests. In general, the RUBiS workload requires little CPU and memory, and only uses around 20\% and 30\% of memory on average in EC2 and ECS respectively.
 
@@ -69,13 +69,13 @@ Comparing the utilizations, it seems that ECS uses both more memory and more CPU
   \centering
   \includegraphics[scale=0.4]{CPU_rubis}
   \captionof{figure}{CPU Utilzation}
-  \label{ECS-CPU}
+  \label{CPU}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.4]{Memory_rubis}
   \captionof{figure}{Memory Utilization}
-  \label{fig:test2}
+  \label{Memory}
 \end{minipage}
 \end{figure}
 
