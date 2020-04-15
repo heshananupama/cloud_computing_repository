@@ -1,0 +1,34 @@
+{
+    "charts": [
+        {
+            "title": "gbm-perf CPU",
+            "lines": [
+                {
+                    "title": "VM CPU",
+                    "directory": "data/gbm-perf/vm",
+                    "type": "us-east-1.Average.collectd.i-0cf2257b1da954bb8.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "Container CPU",
+                    "directory": "data/gbm-perf/container",
+                    "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.CPUUtilization"
+                }
+            ]
+        },
+        {
+            "title": "gbm-perf Memory",
+            "lines": [
+                {
+                    "title": "VM Memory",
+                    "directory": "data/gbm-perf/vm",
+                    "type": "us-east-1.Average.collectd.i-0cf2257b1da954bb8.NONE.memory.percent.used"
+                },
+                {
+                    "title": "Container Memory",
+                    "directory": "data/gbm-perf/container",
+                    "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.MemoryUtilization"
+                }
+            ]
+        }
+    ]
+}
