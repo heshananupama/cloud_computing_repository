@@ -1,31 +1,73 @@
 {
     "charts": [
         {
-            "title": "gbm-perf CPU",
+            "title": "gbm-perf CPU Utilization",
+            "ylabel": "utilization",
+            "ybottom": 0,
+            "ytop": 100,
             "lines": [
                 {
-                    "title": "VM CPU",
-                    "directory": "data/gbm-perf/vm",
+                    "title": "VM",
+                    "directory": "data/gbm-perf/vm/metrics",
                     "type": "us-east-1.Average.collectd.i-0cf2257b1da954bb8.NONE.cpu.percent.active"
                 },
                 {
-                    "title": "Container CPU",
-                    "directory": "data/gbm-perf/container",
+                    "title": "Container",
+                    "directory": "data/gbm-perf/container/metrics",
                     "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.CPUUtilization"
                 }
             ]
         },
         {
-            "title": "gbm-perf Memory",
+            "title": "gbm-perf Memory Utilization",
+            "ylabel": "utilization",
+            "ybottom": 0,
+            "ytop": 100,
             "lines": [
                 {
-                    "title": "VM Memory",
-                    "directory": "data/gbm-perf/vm",
+                    "title": "VM",
+                    "directory": "data/gbm-perf/vm/metrics",
                     "type": "us-east-1.Average.collectd.i-0cf2257b1da954bb8.NONE.memory.percent.used"
                 },
                 {
-                    "title": "Container Memory",
-                    "directory": "data/gbm-perf/container",
+                    "title": "Container",
+                    "directory": "data/gbm-perf/container/metrics",
+                    "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.MemoryUtilization"
+                }
+            ]
+        },
+        {
+            "title": "sysbench CPU Utilization",
+            "ylabel": "utilization",
+            "ybottom": 0,
+            "ytop": 100,
+            "lines": [
+                {
+                    "title": "VM",
+                    "directory": "data/sysbench/vm/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "Container",
+                    "directory": "data/sysbench/container/metrics",
+                    "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.CPUUtilization"
+                }
+            ]
+        },
+        {
+            "title": "sysbench Memory Utilization",
+            "ylabel": "utilization",
+            "ybottom": 0,
+            "ytop": 100,
+            "lines": [
+                {
+                    "title": "VM",
+                    "directory": "data/sysbench/vm/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.root.df.percent_bytes.used"
+                },
+                {
+                    "title": "Container",
+                    "directory": "data/sysbench/container/metrics",
                     "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.MemoryUtilization"
                 }
             ]
