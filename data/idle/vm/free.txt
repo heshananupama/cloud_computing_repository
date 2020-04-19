@@ -1,4 +1,0 @@
-ubuntu@ip-172-31-40-225:~$ free -h
-              total        used        free      shared  buff/cache   available
-Mem:           7.4G        311M        1.5G        752K        5.6G        6.9G
-Swap:            0B          0B          0B
