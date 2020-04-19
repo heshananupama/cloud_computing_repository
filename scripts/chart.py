@@ -43,6 +43,7 @@ for chart in config['charts']:
     plot_df.set_index('timestamp', inplace=True)
     plot_df.interpolate(inplace=True)
     axis = plot_df.plot.line(title=chart['title'])
+    axis.set_xlabel(chart['xlabel'])
     axis.set_ylabel(chart['ylabel'])
     if 'ybottom' in chart:
         axis.set_ylim(bottom=chart['ybottom'])

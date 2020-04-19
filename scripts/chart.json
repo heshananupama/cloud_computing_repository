@@ -2,7 +2,8 @@
     "charts": [
         {
             "title": "gbm-perf CPU Utilization",
-            "ylabel": "utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
             "ybottom": 0,
             "ytop": 100,
             "lines": [
@@ -20,7 +21,8 @@
         },
         {
             "title": "gbm-perf Memory Utilization",
-            "ylabel": "utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
             "ybottom": 0,
             "ytop": 100,
             "lines": [
@@ -38,13 +40,19 @@
         },
         {
             "title": "sysbench CPU Utilization",
-            "ylabel": "utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
             "ybottom": 0,
             "ytop": 100,
             "lines": [
                 {
-                    "title": "VM",
-                    "directory": "data/sysbench/vm/metrics",
+                    "title": "VM (c5)",
+                    "directory": "data/sysbench/vm-c5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "VM (m5)",
+                    "directory": "data/sysbench/vm-m5/metrics",
                     "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.cpu.percent.active"
                 },
                 {
@@ -56,18 +64,72 @@
         },
         {
             "title": "sysbench Memory Utilization",
-            "ylabel": "utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
             "ybottom": 0,
             "ytop": 100,
             "lines": [
                 {
-                    "title": "VM",
-                    "directory": "data/sysbench/vm/metrics",
-                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.root.df.percent_bytes.used"
+                    "title": "VM (c5)",
+                    "directory": "data/sysbench/vm-c5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.memory.percent.used"
+                },
+                {
+                    "title": "VM (m5)",
+                    "directory": "data/sysbench/vm-m5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.memory.percent.used"
                 },
                 {
                     "title": "Container",
                     "directory": "data/sysbench/container/metrics",
+                    "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.MemoryUtilization"
+                }
+            ]
+        },
+        {
+            "title": "Idle CPU Utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
+            "ybottom": 0,
+            "ytop": 100,
+            "lines": [
+                {
+                    "title": "VM (c5)",
+                    "directory": "data/idle/vm-c5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "VM (m5)",
+                    "directory": "data/idle/vm-m5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "Container",
+                    "directory": "data/idle/container/metrics",
+                    "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.CPUUtilization"
+                }
+            ]
+        },
+        {
+            "title": "Idle Memory Utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
+            "ybottom": 0,
+            "ytop": 100,
+            "lines": [
+                {
+                    "title": "VM (c5)",
+                    "directory": "data/idle/vm-c5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.memory.percent.used"
+                },
+                {
+                    "title": "VM (m5)",
+                    "directory": "data/idle/vm-m5/metrics",
+                    "type": "us-east-1.Average.collectd.i-0e7cd1f2a01951f24.NONE.memory.percent.used"
+                },
+                {
+                    "title": "Container",
+                    "directory": "data/idle/container/metrics",
                     "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.MemoryUtilization"
                 }
             ]

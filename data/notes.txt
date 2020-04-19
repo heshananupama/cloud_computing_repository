@@ -14,14 +14,20 @@ CPU
 ---
 
 Container:
-    1042.0338s sysbench time
     Intel(R) Xeon(R) CPU E5-2686 v4 (2300 MHz)
+    1042.0338s sysbench time
+    
 
 VM (c5):
-    779.7900s sysbench time
     Intel(R) Xeon(R) Platinum 8124M CPU (3400 MHz)
+    779.7900s sysbench time
+    
 
-VM (m5): 
+VM (m5):
+    Intel(R) Xeon(R) Platinum 8175M CPU (3100 MHz)
+    855.5076s sysbench time
+
+- Spikes in CPU utilization during sysbench memory/disk benchmarks could be caused by a remote filesystem
 
 
 Memory
@@ -30,15 +36,17 @@ Memory
 Container:
     48777.17 MiB/sec read
     26652.34 MiB/sec write
-    TODO (with 8GB)
-    15G idle (with 16GB)
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!15G idle (with 16 GB)
 
 VM (c5):
     64560.22 MiB/sec read
     29371.23 MiB/sec write
-    6.9G idle (with 8GB)
+    7.26 GB idle (with 8 GB)
 
-VM (m5): 
+VM (m5):
+    60496.50 MiB/sec read
+    25515.71 MiB/sec write
+    15.38 GB idle (with 16 GB)
 
 
 Disk
@@ -58,4 +66,13 @@ VM (c5):
     46.57 MiB/s rand write
     EBS gp2 SSD
 
-VM (m5): 
+VM (m5) - 12 GB filesize:
+    11982.47 MiB/s seq read
+    11495.88 MiB/s rand read
+    128.27 MiB/s seq write
+    46.74 MiB/s rand write
+    EBS gp2 SSD
+
+VM (m5) - 24 GB filesize:
+
+- Disk _reads_ are much faster when memory size is greater than filesize
