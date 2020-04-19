@@ -1,0 +1,61 @@
+Pricing
+-------
+
+c5.xlarge - 0.17 / hr
+m5.xlarge - 0.192 / hr
+
+Fargate (per hr): 0.04048 per vCPU, 0.004445 per GB memory
+
+4 vCPU / 8GB memory = 0.16192 + 0.03556 = 0.19748
+4 vCPU / 16GB memory = 0.16192 + 0.07112 = 0.23304
+
+
+CPU
+---
+
+Container:
+    1042.0338s sysbench time
+    Intel(R) Xeon(R) CPU E5-2686 v4 (2300 MHz)
+
+VM (c5):
+    779.7900s sysbench time
+    Intel(R) Xeon(R) Platinum 8124M CPU (3400 MHz)
+
+VM (m5): 
+
+
+Memory
+------
+
+Container:
+    48777.17 MiB/sec read
+    26652.34 MiB/sec write
+    TODO (with 8GB)
+    15G idle (with 16GB)
+
+VM (c5):
+    64560.22 MiB/sec read
+    29371.23 MiB/sec write
+    6.9G idle (with 8GB)
+
+VM (m5): 
+
+
+Disk
+----
+
+Container:
+    89.72 MiB/s seq read
+    130.77 MiB/s rand read
+    89.47 MiB/s seq write
+    47.50 MiB/s rand write
+    20GB maximum ephemeral storage (must use EFS otherwise)
+
+VM (c5):
+    127.55 MiB/s seq read
+    105.62 MiB/s rand read
+    128.02 MiB/s seq write
+    46.57 MiB/s rand write
+    EBS gp2 SSD
+
+VM (m5): 

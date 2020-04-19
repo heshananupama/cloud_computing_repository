@@ -1,0 +1,151 @@
+{
+    "events": [
+        {
+            "timestamp": 1587248342943,
+            "message": "Architecture:        x86_64",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "CPU op-mode(s):      32-bit, 64-bit",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Byte Order:          Little Endian",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "CPU(s):              4",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "On-line CPU(s) list: 0-3",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Thread(s) per core:  2",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Core(s) per socket:  2",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Socket(s):           1",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "NUMA node(s):        1",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Vendor ID:           GenuineIntel",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "CPU family:          6",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Model:               79",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Model name:          Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Stepping:            1",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "CPU MHz:             2299.921",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "BogoMIPS:            4600.11",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Hypervisor vendor:   Xen",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Virtualization type: full",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "L1d cache:           32K",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "L1i cache:           32K",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "L2 cache:            256K",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "L3 cache:            46080K",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "NUMA node0 CPU(s):   0-3",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248342943,
+            "message": "Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti fsgsbase bmi1 avx2 smep bmi2 erms invpcid xsaveopt",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248343192,
+            "message": "              total        used        free      shared  buff/cache   available",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248343192,
+            "message": "Mem:            15G        197M         15G        312K        421M         15G",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248343192,
+            "message": "Swap:            0B          0B          0B",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248343224,
+            "message": "Start",
+            "ingestionTime": 1587248347325
+        },
+        {
+            "timestamp": 1587248943229,
+            "message": "End",
+            "ingestionTime": 1587248947332
+        }
+    ],
+    "nextForwardToken": "f/35396834249586927386916287159004730823961214754762391552",
+    "nextBackwardToken": "b/35396820862761795141762643293730741203967340475472412672"
+}
