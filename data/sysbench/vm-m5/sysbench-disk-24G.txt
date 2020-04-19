@@ -1,0 +1,314 @@
+[2020-04-19 19:56:36] sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+[2020-04-19 19:56:36] 
+[2020-04-19 19:56:36] 128 files, 196608Kb each, 24576Mb total
+[2020-04-19 19:56:36] Creating files for the test...
+[2020-04-19 19:56:36] Extra file open flags: 0
+[2020-04-19 19:56:36] Creating file test_file.0
+[2020-04-19 19:56:36] Creating file test_file.1
+[2020-04-19 19:56:38] Creating file test_file.2
+[2020-04-19 19:56:39] Creating file test_file.3
+[2020-04-19 19:56:41] Creating file test_file.4
+[2020-04-19 19:56:42] Creating file test_file.5
+[2020-04-19 19:56:44] Creating file test_file.6
+[2020-04-19 19:56:45] Creating file test_file.7
+[2020-04-19 19:56:47] Creating file test_file.8
+[2020-04-19 19:56:48] Creating file test_file.9
+[2020-04-19 19:56:50] Creating file test_file.10
+[2020-04-19 19:56:51] Creating file test_file.11
+[2020-04-19 19:56:53] Creating file test_file.12
+[2020-04-19 19:56:54] Creating file test_file.13
+[2020-04-19 19:56:56] Creating file test_file.14
+[2020-04-19 19:56:57] Creating file test_file.15
+[2020-04-19 19:56:59] Creating file test_file.16
+[2020-04-19 19:57:00] Creating file test_file.17
+[2020-04-19 19:57:02] Creating file test_file.18
+[2020-04-19 19:57:03] Creating file test_file.19
+[2020-04-19 19:57:05] Creating file test_file.20
+[2020-04-19 19:57:06] Creating file test_file.21
+[2020-04-19 19:57:08] Creating file test_file.22
+[2020-04-19 19:57:09] Creating file test_file.23
+[2020-04-19 19:57:11] Creating file test_file.24
+[2020-04-19 19:57:12] Creating file test_file.25
+[2020-04-19 19:57:14] Creating file test_file.26
+[2020-04-19 19:57:15] Creating file test_file.27
+[2020-04-19 19:57:17] Creating file test_file.28
+[2020-04-19 19:57:18] Creating file test_file.29
+[2020-04-19 19:57:20] Creating file test_file.30
+[2020-04-19 19:57:21] Creating file test_file.31
+[2020-04-19 19:57:23] Creating file test_file.32
+[2020-04-19 19:57:24] Creating file test_file.33
+[2020-04-19 19:57:26] Creating file test_file.34
+[2020-04-19 19:57:27] Creating file test_file.35
+[2020-04-19 19:57:29] Creating file test_file.36
+[2020-04-19 19:57:30] Creating file test_file.37
+[2020-04-19 19:57:32] Creating file test_file.38
+[2020-04-19 19:57:33] Creating file test_file.39
+[2020-04-19 19:57:35] Creating file test_file.40
+[2020-04-19 19:57:36] Creating file test_file.41
+[2020-04-19 19:57:38] Creating file test_file.42
+[2020-04-19 19:57:39] Creating file test_file.43
+[2020-04-19 19:57:41] Creating file test_file.44
+[2020-04-19 19:57:42] Creating file test_file.45
+[2020-04-19 19:57:44] Creating file test_file.46
+[2020-04-19 19:57:45] Creating file test_file.47
+[2020-04-19 19:57:47] Creating file test_file.48
+[2020-04-19 19:57:48] Creating file test_file.49
+[2020-04-19 19:57:50] Creating file test_file.50
+[2020-04-19 19:57:51] Creating file test_file.51
+[2020-04-19 19:57:53] Creating file test_file.52
+[2020-04-19 19:57:54] Creating file test_file.53
+[2020-04-19 19:57:56] Creating file test_file.54
+[2020-04-19 19:57:57] Creating file test_file.55
+[2020-04-19 19:57:59] Creating file test_file.56
+[2020-04-19 19:58:00] Creating file test_file.57
+[2020-04-19 19:58:02] Creating file test_file.58
+[2020-04-19 19:58:03] Creating file test_file.59
+[2020-04-19 19:58:05] Creating file test_file.60
+[2020-04-19 19:58:06] Creating file test_file.61
+[2020-04-19 19:58:08] Creating file test_file.62
+[2020-04-19 19:58:09] Creating file test_file.63
+[2020-04-19 19:58:11] Creating file test_file.64
+[2020-04-19 19:58:12] Creating file test_file.65
+[2020-04-19 19:58:14] Creating file test_file.66
+[2020-04-19 19:58:15] Creating file test_file.67
+[2020-04-19 19:58:17] Creating file test_file.68
+[2020-04-19 19:58:18] Creating file test_file.69
+[2020-04-19 19:58:20] Creating file test_file.70
+[2020-04-19 19:58:21] Creating file test_file.71
+[2020-04-19 19:58:23] Creating file test_file.72
+[2020-04-19 19:58:24] Creating file test_file.73
+[2020-04-19 19:58:26] Creating file test_file.74
+[2020-04-19 19:58:27] Creating file test_file.75
+[2020-04-19 19:58:29] Creating file test_file.76
+[2020-04-19 19:58:30] Creating file test_file.77
+[2020-04-19 19:58:32] Creating file test_file.78
+[2020-04-19 19:58:33] Creating file test_file.79
+[2020-04-19 19:58:35] Creating file test_file.80
+[2020-04-19 19:58:36] Creating file test_file.81
+[2020-04-19 19:58:38] Creating file test_file.82
+[2020-04-19 19:58:39] Creating file test_file.83
+[2020-04-19 19:58:41] Creating file test_file.84
+[2020-04-19 19:58:42] Creating file test_file.85
+[2020-04-19 19:58:44] Creating file test_file.86
+[2020-04-19 19:58:45] Creating file test_file.87
+[2020-04-19 19:58:47] Creating file test_file.88
+[2020-04-19 19:58:48] Creating file test_file.89
+[2020-04-19 19:58:50] Creating file test_file.90
+[2020-04-19 19:58:51] Creating file test_file.91
+[2020-04-19 19:58:53] Creating file test_file.92
+[2020-04-19 19:58:54] Creating file test_file.93
+[2020-04-19 19:58:56] Creating file test_file.94
+[2020-04-19 19:58:57] Creating file test_file.95
+[2020-04-19 19:58:59] Creating file test_file.96
+[2020-04-19 19:59:00] Creating file test_file.97
+[2020-04-19 19:59:02] Creating file test_file.98
+[2020-04-19 19:59:03] Creating file test_file.99
+[2020-04-19 19:59:05] Creating file test_file.100
+[2020-04-19 19:59:06] Creating file test_file.101
+[2020-04-19 19:59:08] Creating file test_file.102
+[2020-04-19 19:59:09] Creating file test_file.103
+[2020-04-19 19:59:11] Creating file test_file.104
+[2020-04-19 19:59:12] Creating file test_file.105
+[2020-04-19 19:59:14] Creating file test_file.106
+[2020-04-19 19:59:15] Creating file test_file.107
+[2020-04-19 19:59:17] Creating file test_file.108
+[2020-04-19 19:59:18] Creating file test_file.109
+[2020-04-19 19:59:20] Creating file test_file.110
+[2020-04-19 19:59:21] Creating file test_file.111
+[2020-04-19 19:59:23] Creating file test_file.112
+[2020-04-19 19:59:24] Creating file test_file.113
+[2020-04-19 19:59:26] Creating file test_file.114
+[2020-04-19 19:59:27] Creating file test_file.115
+[2020-04-19 19:59:29] Creating file test_file.116
+[2020-04-19 19:59:30] Creating file test_file.117
+[2020-04-19 19:59:32] Creating file test_file.118
+[2020-04-19 19:59:33] Creating file test_file.119
+[2020-04-19 19:59:35] Creating file test_file.120
+[2020-04-19 19:59:36] Creating file test_file.121
+[2020-04-19 19:59:38] Creating file test_file.122
+[2020-04-19 19:59:39] Creating file test_file.123
+[2020-04-19 19:59:41] Creating file test_file.124
+[2020-04-19 19:59:42] Creating file test_file.125
+[2020-04-19 19:59:44] Creating file test_file.126
+[2020-04-19 19:59:45] Creating file test_file.127
+[2020-04-19 19:59:47] 25769803776 bytes written in 191.05 seconds (128.63 MiB/sec).
+[2020-04-19 19:59:47] sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+[2020-04-19 19:59:47] 
+[2020-04-19 19:59:47] Running the test with following options:
+[2020-04-19 19:59:47] Number of threads: 4
+[2020-04-19 19:59:47] Initializing random number generator from current time
+[2020-04-19 19:59:47] 
+[2020-04-19 19:59:47] 
+[2020-04-19 19:59:47] Extra file open flags: 0
+[2020-04-19 19:59:47] 128 files, 192MiB each
+[2020-04-19 19:59:47] 24GiB total file size
+[2020-04-19 19:59:47] Block size 16KiB
+[2020-04-19 19:59:47] Periodic FSYNC enabled, calling fsync() each 100 requests.
+[2020-04-19 19:59:47] Calling fsync() at the end of test, Enabled.
+[2020-04-19 19:59:47] Using synchronous I/O mode
+[2020-04-19 19:59:47] Doing sequential read test
+[2020-04-19 19:59:47] Initializing worker threads...
+[2020-04-19 19:59:47] 
+[2020-04-19 19:59:47] Threads started!
+[2020-04-19 19:59:47] 
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] File operations:
+[2020-04-19 20:04:47]     reads/s:                      8200.78
+[2020-04-19 20:04:47]     writes/s:                     0.00
+[2020-04-19 20:04:47]     fsyncs/s:                     0.00
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] Throughput:
+[2020-04-19 20:04:47]     read, MiB/s:                  128.14
+[2020-04-19 20:04:47]     written, MiB/s:               0.00
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] General statistics:
+[2020-04-19 20:04:47]     total time:                          300.0003s
+[2020-04-19 20:04:47]     total number of events:              2460258
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] Latency (ms):
+[2020-04-19 20:04:47]          min:                                  0.00
+[2020-04-19 20:04:47]          avg:                                  0.49
+[2020-04-19 20:04:47]          max:                                 17.02
+[2020-04-19 20:04:47]          95th percentile:                      1.64
+[2020-04-19 20:04:47]          sum:                            1198232.46
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] Threads fairness:
+[2020-04-19 20:04:47]     events (avg/stddev):           615064.5000/3012.69
+[2020-04-19 20:04:47]     execution time (avg/stddev):   299.5581/0.00
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] Running the test with following options:
+[2020-04-19 20:04:47] Number of threads: 4
+[2020-04-19 20:04:47] Initializing random number generator from current time
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] 
+[2020-04-19 20:04:47] Extra file open flags: 0
+[2020-04-19 20:04:47] 128 files, 192MiB each
+[2020-04-19 20:04:47] 24GiB total file size
+[2020-04-19 20:04:47] Block size 16KiB
+[2020-04-19 20:04:47] Periodic FSYNC enabled, calling fsync() each 100 requests.
+[2020-04-19 20:04:47] Calling fsync() at the end of test, Enabled.
+[2020-04-19 20:04:47] Using synchronous I/O mode
+[2020-04-19 20:04:47] Doing sequential write (creation) test
+[2020-04-19 20:04:48] Initializing worker threads...
+[2020-04-19 20:04:48] 
+[2020-04-19 20:04:48] Threads started!
+[2020-04-19 20:04:48] 
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] File operations:
+[2020-04-19 20:09:48]     reads/s:                      0.00
+[2020-04-19 20:09:48]     writes/s:                     8204.92
+[2020-04-19 20:09:48]     fsyncs/s:                     10502.11
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] Throughput:
+[2020-04-19 20:09:48]     read, MiB/s:                  0.00
+[2020-04-19 20:09:48]     written, MiB/s:               128.20
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] General statistics:
+[2020-04-19 20:09:48]     total time:                          300.0259s
+[2020-04-19 20:09:48]     total number of events:              5612621
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] Latency (ms):
+[2020-04-19 20:09:48]          min:                                  0.00
+[2020-04-19 20:09:48]          avg:                                  0.21
+[2020-04-19 20:09:48]          max:                                 91.95
+[2020-04-19 20:09:48]          95th percentile:                      0.04
+[2020-04-19 20:09:48]          sum:                            1197134.66
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] Threads fairness:
+[2020-04-19 20:09:48]     events (avg/stddev):           1403155.2500/6174.14
+[2020-04-19 20:09:48]     execution time (avg/stddev):   299.2837/0.00
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] Running the test with following options:
+[2020-04-19 20:09:48] Number of threads: 4
+[2020-04-19 20:09:48] Initializing random number generator from current time
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] Extra file open flags: 0
+[2020-04-19 20:09:48] 128 files, 192MiB each
+[2020-04-19 20:09:48] 24GiB total file size
+[2020-04-19 20:09:48] Block size 16KiB
+[2020-04-19 20:09:48] Number of IO requests: 0
+[2020-04-19 20:09:48] Read/Write ratio for combined random IO test: 1.50
+[2020-04-19 20:09:48] Periodic FSYNC enabled, calling fsync() each 100 requests.
+[2020-04-19 20:09:48] Calling fsync() at the end of test, Enabled.
+[2020-04-19 20:09:48] Using synchronous I/O mode
+[2020-04-19 20:09:48] Doing random read test
+[2020-04-19 20:09:48] Initializing worker threads...
+[2020-04-19 20:09:48] 
+[2020-04-19 20:09:48] Threads started!
+[2020-04-19 20:09:48] 
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] File operations:
+[2020-04-19 20:14:48]     reads/s:                      7260.80
+[2020-04-19 20:14:48]     writes/s:                     0.00
+[2020-04-19 20:14:48]     fsyncs/s:                     0.00
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] Throughput:
+[2020-04-19 20:14:48]     read, MiB/s:                  113.45
+[2020-04-19 20:14:48]     written, MiB/s:               0.00
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] General statistics:
+[2020-04-19 20:14:48]     total time:                          300.0296s
+[2020-04-19 20:14:48]     total number of events:              2178493
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] Latency (ms):
+[2020-04-19 20:14:48]          min:                                  0.00
+[2020-04-19 20:14:48]          avg:                                  0.55
+[2020-04-19 20:14:48]          max:                                 70.06
+[2020-04-19 20:14:48]          95th percentile:                      2.03
+[2020-04-19 20:14:48]          sum:                            1198907.18
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] Threads fairness:
+[2020-04-19 20:14:48]     events (avg/stddev):           544623.2500/1375.06
+[2020-04-19 20:14:48]     execution time (avg/stddev):   299.7268/0.00
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] Running the test with following options:
+[2020-04-19 20:14:48] Number of threads: 4
+[2020-04-19 20:14:48] Initializing random number generator from current time
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] Extra file open flags: 0
+[2020-04-19 20:14:48] 128 files, 192MiB each
+[2020-04-19 20:14:48] 24GiB total file size
+[2020-04-19 20:14:48] Block size 16KiB
+[2020-04-19 20:14:48] Number of IO requests: 0
+[2020-04-19 20:14:48] Read/Write ratio for combined random IO test: 1.50
+[2020-04-19 20:14:48] Periodic FSYNC enabled, calling fsync() each 100 requests.
+[2020-04-19 20:14:48] Calling fsync() at the end of test, Enabled.
+[2020-04-19 20:14:48] Using synchronous I/O mode
+[2020-04-19 20:14:48] Doing random write test
+[2020-04-19 20:14:48] Initializing worker threads...
+[2020-04-19 20:14:48] 
+[2020-04-19 20:14:48] Threads started!
+[2020-04-19 20:14:48] 
+[2020-04-19 20:19:48] 
+[2020-04-19 20:19:48] File operations:
+[2020-04-19 20:19:48]     reads/s:                      0.00
+[2020-04-19 20:19:48]     writes/s:                     2981.29
+[2020-04-19 20:19:48]     fsyncs/s:                     3815.82
+[2020-04-19 20:19:48] 
+[2020-04-19 20:19:48] Throughput:
+[2020-04-19 20:19:48]     read, MiB/s:                  0.00
+[2020-04-19 20:19:48]     written, MiB/s:               46.58
+[2020-04-19 20:19:48] 
+[2020-04-19 20:19:48] General statistics:
+[2020-04-19 20:19:48]     total time:                          300.0027s
+[2020-04-19 20:19:48]     total number of events:              2039162
+[2020-04-19 20:19:48] 
+[2020-04-19 20:19:48] Latency (ms):
+[2020-04-19 20:19:48]          min:                                  0.00
+[2020-04-19 20:19:48]          avg:                                  0.59
+[2020-04-19 20:19:48]          max:                                 44.53
+[2020-04-19 20:19:48]          95th percentile:                      2.43
+[2020-04-19 20:19:48]          sum:                            1198966.51
+[2020-04-19 20:19:48] 
+[2020-04-19 20:19:48] Threads fairness:
+[2020-04-19 20:19:48]     events (avg/stddev):           509790.5000/1128.79
+[2020-04-19 20:19:48]     execution time (avg/stddev):   299.7416/0.00
+[2020-04-19 20:19:48]

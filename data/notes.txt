@@ -36,7 +36,7 @@ Memory
 Container:
     48777.17 MiB/sec read
     26652.34 MiB/sec write
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!15G idle (with 16 GB)
+    15.96 GB idle (with 16 GB / limited to 8 GB)
 
 VM (c5):
     64560.22 MiB/sec read
@@ -47,6 +47,8 @@ VM (m5):
     60496.50 MiB/sec read
     25515.71 MiB/sec write
     15.38 GB idle (with 16 GB)
+
+- The container reports 16 GB even though it has a hard/soft limit of 8 GB (probably reports the machine it runs on)
 
 
 Disk
@@ -74,5 +76,10 @@ VM (m5) - 12 GB filesize:
     EBS gp2 SSD
 
 VM (m5) - 24 GB filesize:
+    128.14 MiB/s seq read
+    113.45 MiB/s rand read
+    128.20 MiB/s seq write
+    46.58 MiB/s rand write
 
+- The container has worse seq than rand reads. Confirmed this with a second run. This could be due to remote filesystem.
 - Disk _reads_ are much faster when memory size is greater than filesize
