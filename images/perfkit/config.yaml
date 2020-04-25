@@ -1,0 +1,14 @@
+static_vms:
+  - &vm1
+    ip_address: 127.0.0.1
+    user_name: michael
+    ssh_private_key: /home/michael/.ssh/id_rsa
+    zone: ""
+    disk_specs:
+      - mount_point: /opt/perfbench
+
+iperf:
+  vm_groups:
+    vm_1:
+      static_vms:
+        - *vm1

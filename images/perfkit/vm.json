@@ -1,0 +1,14 @@
+[
+	{
+		"ip_address": "127.0.0.1",
+		"user_name": "michael",
+		"keyfile_path": "/home/michael/.ssh/id_rsa",
+		"ssh_port": 22,
+		"internal_ip": "127.0.0.1",
+		"zone": "",
+		"local_disks": ["/opt/perfbench"],
+		"scratch_disk_mountpoints": [],
+		"os_type": "debian",
+		"install_packages": true
+	}
+]
