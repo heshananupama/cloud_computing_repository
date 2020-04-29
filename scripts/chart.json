@@ -62,6 +62,7 @@
                 }
             ]
         },
+
         {
             "title": "sysbench Memory Utilization",
             "xlabel": "Timestamp",
@@ -83,6 +84,64 @@
                     "title": "Container",
                     "directory": "data/sysbench/container/metrics",
                     "type": "us-east-1.Average.AWS.ECS.default.gbmperf-service.MemoryUtilization"
+                }
+            ]
+        },
+        {
+            "title": "RUBiS CPU Utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
+            "ybottom": 0,
+            "ytop": 100,
+            "lines": [
+                {
+                    "title": "VM-1000",
+                    "directory": "data/rubis/vm/metrics-1000",
+                    "type": "us-east-1.Average.collectd.i-08d9d3cd568c8b550.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "Container-1000",
+                    "directory": "data/rubis/container/metrics-1000",
+                    "type": "us-east-1.Average.AWS.ECS.rubis.project-rubis-service.CPUUtilization"
+                },
+                 {
+                    "title": "VM-3000",
+                    "directory": "data/rubis/vm/metrics-3000",
+                    "type": "us-east-1.Average.collectd.i-08d9d3cd568c8b550.NONE.cpu.percent.active"
+                },
+                {
+                    "title": "Container-3000",
+                    "directory": "data/rubis/container/metrics-3000",
+                    "type": "us-east-1.Average.AWS.ECS.Clients-3000.clients3000-service.CPUUtilization"
+                }
+            ]
+        },
+         {
+            "title": "RUBiS Memory Utilization",
+            "xlabel": "Timestamp",
+            "ylabel": "Utilization",
+            "ybottom": 0,
+            "ytop": 100,
+            "lines": [
+                {
+                    "title": "VM-1000",
+                    "directory": "data/rubis/vm/metrics-1000",
+                    "type": "us-east-1.Average.collectd.i-08d9d3cd568c8b550.NONE.memory.percent.used"
+                },
+                {
+                    "title": "Container-1000",
+                    "directory": "data/rubis/container/metrics-1000",
+                    "type": "us-east-1.Average.AWS.ECS.rubis.project-rubis-service.MemoryUtilization"
+                },
+                {
+                    "title": "VM-3000",
+                    "directory": "data/rubis/vm/metrics-3000",
+                    "type": "us-east-1.Average.collectd.i-08d9d3cd568c8b550.NONE.memory.percent.used"
+                },
+                {
+                    "title": "Container-3000",
+                    "directory": "data/rubis/container/metrics-3000",
+                    "type": "us-east-1.Average.AWS.ECS.Clients-3000.clients3000-service.MemoryUtilization"
                 }
             ]
         },
