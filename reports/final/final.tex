@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+
+\def\baselinestretch{1}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{fancyhdr} 
+\usepackage{pagecounting}
+\usepackage{color}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{lipsum}
+
+\newcommand\bb[1]{\mbox{\em #1}}
+\newcommand{\eat}[1]{}
+\newcommand{\hsp}{\hspace*{\parindent}}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+
+\titleformat{\section}{\vspace{- 0.5 \baselineskip}\normalfont\fontsize{12}{12}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\vspace{- 0.5 \baselineskip}\normalfont\fontsize{11}{11}\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt} 
+\pagestyle{fancy}
+\cfoot{}
+\lhead{}
+\rhead{}
+\rfoot{\itshape\textcolor{gray}{Page \thepage\ of \pageref{LastPage}}}
+\lfoot{\itshape\textcolor{gray}{CS525T Cloud Computing Final Report}}
+
+\begin{center}
+{\LARGE \bf Project Final Report: Comparison Between Virtual Machines and Containers for Cloud End Users} \\
+{\normalsize \emph{Heshan Perera, Michael Ludwig}}\\
+\end{center}
+
+% 1. The final report should be about 10-12 pages long using the same Latex template for paper review.
+% 2. It is okay to reuse texts from your proposal, but the final report should focus on the following questions. One way to think about the final report is to use the proposal as a roadmap and fill in with information including what you chose to do, and why you chose to do so.
+%     a. A concrete description of the problem statement: what were the exact research questions you work on?
+%     b. A more comprehensive related work: this is what makes
+%     c. A detailed description of the proposed ideas, and techniques that were used to implement them. You should focus on explaining the ideas and rationales, instead of only describing what you have done. It is not necessary to copy and paste the project code as the entire project code should be submitted together and I will have access to them.
+%     d. The evaluation section can be structured as 1) experiment setup, 2) experiment results, e.g., tables or figures, 3) result analysis that explains the significance of results, for each question you are evaluating.
+%     e. The conclusion section which should provide readers the key takeaways and describe any other solutions that were attempted and potential solutions.
+%     f. The division of work done by each team member.
+
+
+\section{Problem Statement}
+
+NOTES:
+- include startup/shutdown times for VMs/containers
+- include image sizes for VMs/containers
+
+Modern cloud computing offers a vast array of options when deciding how to run an application. The traditional approach to this is to use VMs. This requires installing the application on an OS and exporting the entire disk image. When it comes time to run the application, or scale an existing setup, a new VM would be booted from this image. This is perfectly acceptable for services with a constant workload, but for services such as web applications, databases, or anything where users come and go, or jobs run on a periodic schedule, the workload will likely fluctuate. This means it's important to scale the infrastructure up and down to get the best utilization, decreasing cost for the cloud user, and increasing effective capacity for the cloud provider.
+
+
+\section{Related Work}
+
+
+\section{Key Ideas}
+
+
+\section{Evaluation}
+
+
+\section{Conclusion}
+
+
+\section{Division of Work}
+
+
+\end{document}
