@@ -51,10 +51,28 @@ NOTES:
 - include startup/shutdown times for VMs/containers
 - include image sizes for VMs/containers
 
-Modern cloud computing offers a vast array of options when deciding how to run an application. The traditional approach to this is to use VMs. This requires installing the application on an OS and exporting the entire disk image. When it comes time to run the application, or scale an existing setup, a new VM would be booted from this image. This is perfectly acceptable for services with a constant workload, but for services such as web applications, databases, or anything where users come and go, or jobs run on a periodic schedule, the workload will likely fluctuate. This means it's important to scale the infrastructure up and down to get the best utilization, decreasing cost for the cloud user, and increasing effective capacity for the cloud provider.
+Modern cloud computing offers a vast array of options when deciding how to run an application. The traditional approach to this is to use VMs. This requires installing the application on an OS and exporting the entire disk image. When it comes time to run the application, or scale an existing setup, a new VM would be booted from this image. This is perfectly acceptable for services with a consistent workload, but for services such as web applications, databases, or anything where users come and go, or jobs run on a periodic schedule, the workload will likely fluctuate. This means it's important to scale the infrastructure up and down to get the best utilization, decreasing cost for the cloud user, and increasing effective capacity for the cloud provider. To do this, the isolation mechanism needs to be able to start up quickly. Additionally, it needs to have little overhead, so the hardware can be used to its full capacity.
+
+This report aims to identify specific differences and similarities between VMs and containers when using them as an end user on a cloud service, specifically AWS. To start off, it's important to know the basics of each, such as unit cost per hardware resource and startup times. However, the main subject of interest is performance under various workloads. How these technologies fair under common workload scenarios it an important deciding factor when choosing infrastructure. In addition to this, it also helps to pinpoint the cause of performance differences. This may help mitigate these problems for users who don't have much of a choice. Lastly, other factors besides cost and performance may be important for some users, such as level of isolation, so this is also investigated.
 
 
 \section{Related Work}
+
+Other work exists that compares VMs with containers. "Containers and Virtual Machines at Scale: A Comparative Study" by Chaufournier et. al compares VMs and containers on bare metal using five different workloads. They concluded that containers running with LXC have similar performance in most areas except disk I/O, but VMs provide better isolation. "An Updated Performance Comparison of Virtual Machines and Linux Containers" by Felter et al confirms the finding that containers have only a small performance cost versus bare metal. This paper used Docker instead of LXC, which closer aligns to our work due to the packaging format and runtime. Similarly, our work ran benchmarks on VMs and containers, though it was not necessarily on bare-metal. Instead, we used cloud services as presented to customers to compare the two, factoring in cost and scalability. This body of work shows that the two technologies are expected to have similar raw performance in terms of individual resources such as CPU, memory, disk, and network.
+
+One paper that had very similar goals and methods as ours was "Performance Comparison between Container-based and VM-based Services" by Salah et al. They compared the throughput, latency, and CPU utilization of an Apache web service running on EC2 and ECS, and concluded that EC2 has significantly higher performance. However, there are some important differences with our work. Their paper was published in 2017, and used self-managed instances for ECS. We used ECS with Fargate 1.4 which uses containerd on top of EC2, with the new Fargate control-plane that uses Firecracker micro VMs, leading to better security and likely a different performance profile. Additionally, they did not investigate causes for the disparity, such as benchmarking specific resources.
+
+"Container and Microservice Driven Design for Cloud Infrastructure DevOps" by Kang et al does a comparison of VM and container approaches for DevOps. The key takeaway here is the ability of each to scale. They measure the time and resources it takes to deploy and scale parts of an OpenStack control plane. It takes the VM much longer to start up, and slightly longer to instantiate the service, taking 1.5 times longer in total than the container, along with higher CPU usage. They use KVM as the hypervisor and Docker for managing containers.
+
+Other papers illustrate the benefits of containers besides scalability and performance, namely 
+
+In terms of security, 
+
+ECS uses a dedicted kernel runtime (firecracker)
+
+What is the paper
+What they concluded
+How is our work different
 
 
 \section{Key Ideas}
@@ -68,5 +86,8 @@ Modern cloud computing offers a vast array of options when deciding how to run a
 
 \section{Division of Work}
 
+
+
+https://aws.amazon.com/blogs/containers/under-the-hood-fargate-data-plane/
 
 \end{document}
