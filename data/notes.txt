@@ -83,3 +83,59 @@ VM (m5) - 24 GB filesize:
 
 - The container has worse seq than rand reads. Confirmed this with a second run. This could be due to remote filesystem.
 - Disk _reads_ are much faster when memory size is greater than filesize
+
+
+Startup Time
+------------
+
+Fargate will pull images every time, which explains the long startup time.
+Fargate still seems to boot a new instance (~30s) for each container.
+
+1) EC2 (m5.xlarge, 40G disk, gbmperf ami, average of 3 runs): 37s
+2) EC2 (t2.small, XG disk, gbmperf ami, average of 3 runs):
+
+3) ECS (1.53G image on dockerhub, fargate 1.4, gbmperf, average of 3 runs): 117.5s
+4) ECS (gbmperf on ECR): 137s
+5) ECS (4C/16G, small image - alpine:latest): 30s
+6) ECS (1C/2G, small image): 41s
+
+
+Data for (3)
+arn:aws:ecs:us-east-1:589848030355:task/b6bb8df8-62fb-422f-8119-c719e3ab5fb2
+2020-05-03 18:37:28
+2020-05-03T18:39:30
+
+arn:aws:ecs:us-east-1:589848030355:task/74784236-b188-49f9-bd3b-640c73fcd1d4
+2020-05-03 18:37:29
+2020-05-03T18:39:22
+
+arn:aws:ecs:us-east-1:589848030355:task/8ef0a7e8-9613-4e50-a5d8-915b7dc884d8
+2020-05-03 18:37:30
+2020-05-03T18:39:27
+
+
+Data for (4)
+Start  2020-05-03 23:17:14
+d128  2020-05-03 23:19:30
+
+Start  2020-05-03 23:26:12
+18d2  2020-05-03 23:28:29
+c7d0  2020-05-03 23:28:30
+
+
+Data for (5)
+Start  2020-05-03 22:02:52
+05d6  2020-05-03 22:03:20
+
+Start  2020-05-03 22:04:11
+219a  2020-05-03 22:04:41
+44f1  2020-05-03 22:04:42
+
+
+Data for (6)
+Start  2020-05-03 22:19:01
+e294  2020-05-03 22:19:34
+
+Start  2020-05-03 22:20:56
+0b8c  2020-05-03 22:21:44
+9af4  2020-05-03 22:21:39
