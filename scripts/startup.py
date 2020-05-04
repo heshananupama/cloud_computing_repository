@@ -50,7 +50,7 @@ class VMBootTimer:
         self.runResp = self.client.run_instances(
             MaxCount=1,
             MinCount=1,
-            ImageId='ami-0b129870aee2a70e4',
+            ImageId='ami-08679cab36008bdff',
             InstanceType='m5.xlarge',
             SecurityGroupIds=[
                 'sg-0dfe71d4d563d518a',

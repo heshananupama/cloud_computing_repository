@@ -88,16 +88,33 @@ VM (m5) - 24 GB filesize:
 Startup Time
 ------------
 
+Disk usage on the VM was about ~8G, but total disk size was 40G.
+
 Fargate will pull images every time, which explains the long startup time.
 Fargate still seems to boot a new instance (~30s) for each container.
 
 1) EC2 (m5.xlarge, 40G disk, gbmperf ami, average of 3 runs): 37s
-2) EC2 (t2.small, XG disk, gbmperf ami, average of 3 runs):
+2) EC2 (t2.small, 8G disk, base ubuntu ami, average of 3 runs): 22s
 
 3) ECS (1.53G image on dockerhub, fargate 1.4, gbmperf, average of 3 runs): 117.5s
 4) ECS (gbmperf on ECR): 137s
 5) ECS (4C/16G, small image - alpine:latest): 30s
 6) ECS (1C/2G, small image): 41s
+
+
+Data for (2)
+
+i-014fa98282b3f705b
+00:26:54
+00:27:16
+
+i-0993cd46b5d3def1c
+00:31:09
+00:31:31
+
+i-06009f1a2c4fc1c05
+00:34:23
+04:34:46
 
 
 Data for (3)
