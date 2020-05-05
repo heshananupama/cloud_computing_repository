@@ -50,4 +50,12 @@ for chart in config['charts']:
     if 'ytop' in chart:
         axis.set_ylim(top=chart['ytop'])
 
+for barchart in config['barcharts']:
+    columns = {}
+    for dataset in barchart['sets']:
+        columns[dataset['name']] = dataset['data']
+
+    df = pandas.DataFrame(columns, index=barchart['index'])
+    df.plot.bar(title=barchart['title'], rot=0)
+
 plt.show()

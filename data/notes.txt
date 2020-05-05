@@ -13,6 +13,9 @@ Fargate (per hr): 0.04048 per vCPU, 0.004445 per GB memory
 CPU
 ---
 
+VM can handle more concurrent clients than containers with same number of CPUS.
+Rubis used 1 vCPU and 2G memory.
+
 Container:
     Intel(R) Xeon(R) CPU E5-2686 v4 (2300 MHz)
     1042.0338s sysbench time
@@ -61,6 +64,12 @@ Container:
     47.50 MiB/s rand write
     20GB maximum ephemeral storage (must use EFS otherwise)
 
+VM (m5) - 24 GB filesize:
+    128.14 MiB/s seq read
+    113.45 MiB/s rand read
+    128.20 MiB/s seq write
+    46.58 MiB/s rand write
+
 VM (c5):
     127.55 MiB/s seq read
     105.62 MiB/s rand read
@@ -75,11 +84,6 @@ VM (m5) - 12 GB filesize:
     46.74 MiB/s rand write
     EBS gp2 SSD
 
-VM (m5) - 24 GB filesize:
-    128.14 MiB/s seq read
-    113.45 MiB/s rand read
-    128.20 MiB/s seq write
-    46.58 MiB/s rand write
 
 - The container has worse seq than rand reads. Confirmed this with a second run. This could be due to remote filesystem.
 - Disk _reads_ are much faster when memory size is greater than filesize
@@ -94,7 +98,8 @@ Fargate will pull images every time, which explains the long startup time.
 Fargate still seems to boot a new instance (~30s) for each container.
 
 1) EC2 (m5.xlarge, 40G disk, gbmperf ami, average of 3 runs): 37s
-2) EC2 (t2.small, 8G disk, base ubuntu ami, average of 3 runs): 22s
+2a) EC2 (t2.small, 8G disk, base ubuntu ami, average of 3 runs): 22s
+2b) Rubis (t2.small, 8G disk): 30s
 
 3) ECS (1.53G image on dockerhub, fargate 1.4, gbmperf, average of 3 runs): 117.5s
 4) ECS (gbmperf on ECR): 137s

@@ -1,4 +1,27 @@
 {
+    "barcharts": [
+        {
+            "title": "Sysbench Disk Performance (MiB/s)",
+            "index": [
+                "Sequential Read", "Random Read",
+                "Sequential Write", "Random Write"
+            ],
+            "sets": [
+                {
+                    "name": "Container",
+                    "data": [89.72, 130.77, 89.47, 47.50]
+                },
+                {
+                    "name": "VM (m5)",
+                    "data": [128.14, 113.45, 128.20, 46.58]
+                },
+                {
+                    "name": "VM (c5)",
+                    "data": [127.55, 105.62, 128.02, 46.57]
+                }
+            ]
+        }
+    ],
     "charts": [
         {
             "title": "gbm-perf CPU Utilization",
