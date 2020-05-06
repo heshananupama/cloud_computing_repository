@@ -20,6 +20,55 @@
                     "data": [127.55, 105.62, 128.02, 46.57]
                 }
             ]
+        },
+        {
+            "title": "Sysbench CPU Performance (seconds, lower=better)",
+            "index": ["CPU Benchmark Time"],
+            "sets": [
+                {
+                    "name": "Container",
+                    "data": [1042.0338]
+                },
+                {
+                    "name": "VM (m5)",
+                    "data": [855.5076]
+                },
+                {
+                    "name": "VM (c5)",
+                    "data": [779.79]
+                }
+            ]
+        },
+        {
+            "title": "Sysbench Memory Performance (MiB/s)",
+            "index": ["Memory Read", "Memory Write"],
+            "sets": [
+                {
+                    "name": "Container",
+                    "data": [48777.17, 26652.34]
+                },
+                {
+                    "name": "VM (m5)",
+                    "data": [60496.5, 25515.71]
+                },
+                {
+                    "name": "VM (c5)",
+                    "data": [64560.22, 29371.23]
+                }
+            ]
+        },
+        {
+            "title": "Startup Time (seconds, lower=better)",
+            "index": [
+                "ECS-LG-ECR", "ECS-LG", "ECS-MIN", "EC2-LG",
+                "EC2-SM", "ECS-SM", "EC2-MIN"
+            ],
+            "sets": [
+                {
+                    "name": "Startup Time",
+                    "data": [137, 117.5, 41, 37, 30, 30, 22]
+                }
+            ]
         }
     ],
     "charts": [
