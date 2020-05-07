@@ -73,6 +73,9 @@ for Serverless Applications" by Agache et al aims to fix this. Firecracker uses 
 
 \section{Key Ideas}
 
+In order to get a good understanding of real world performance difference between VMs and containers, two different macro benchmarks were used that mimic real-world workloads: GBM-perf and RUBiS. GBM-perf is an inference workload for machine learning models that use gradient boosting, a popular ensemble technique. We chose this benchmark due to the popularity of ML inference among cloud users and its applicability to various applications. The benchmark consists of three libraries: xgboost, catboost, and lightgbm, each of which is run on 100K, 1M, and 10M records of the airline dataset. GBM-perf is mainly CPU-bound, with a small amount of sequential disk access, as well as memory access.
+
+In order to explain the benchmark results, we used several micro benchmarks to pinpoint discrepancies for specific resources. To do this, we used Sysbench. 
 
 \section{Evaluation}
 
