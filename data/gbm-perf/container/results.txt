@@ -1,0 +1,279 @@
+14:19:37
+0.1m:
+
+14:19:43
+xgboost 2.322 0.7338433
+
+14:19:46
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+14:19:46
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+14:19:46
+Try to set boost_from_average=false, if your old models produce bad results
+
+14:19:46
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.001784 seconds.
+
+14:19:46
+You can set `force_row_wise=true` to remove the overhead.
+
+14:19:46
+And if memory is not enough, you can set `force_col_wise=true`.
+
+14:19:50
+2.623 0.7301411
+
+14:19:55
+catboost 3.953 0.7223865
+
+14:19:55
+1m:
+
+14:20:18
+xgboost 15.439 0.7478858
+
+14:20:25
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+14:20:25
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+14:20:25
+Try to set boost_from_average=false, if your old models produce bad results
+
+14:20:25
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.016229 seconds.
+
+14:20:25
+You can set `force_row_wise=true` to remove the overhead.
+
+14:20:25
+And if memory is not enough, you can set `force_col_wise=true`.
+
+14:20:34
+8.673 0.7655526
+
+14:21:12
+catboost 35.988 0.7339091
+
+14:21:12
+10m:
+
+14:24:36
+xgboost 145.153 0.7539445
+
+14:25:28
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+14:25:28
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+14:25:28
+Try to set boost_from_average=false, if your old models produce bad results
+
+14:25:29
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.141126 seconds.
+
+14:25:29
+You can set `force_row_wise=true` to remove the overhead.
+
+14:25:29
+And if memory is not enough, you can set `force_col_wise=true`.
+
+14:26:36
+69.998 0.7745457
+
+14:32:59
+catboost 370.49 0.7358196
+
+
+
+
+
+
+17:09:36
+0.1m:
+
+17:09:41
+xgboost 2.243 0.7338433
+
+17:09:44
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+17:09:44
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+17:09:44
+Try to set boost_from_average=false, if your old models produce bad results
+
+17:09:44
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.001756 seconds.
+
+17:09:44
+You can set `force_row_wise=true` to remove the overhead.
+
+17:09:44
+And if memory is not enough, you can set `force_col_wise=true`.
+
+17:09:47
+2.43 0.7301411
+
+17:09:52
+catboost 3.938 0.7223865
+
+17:09:52
+1m:
+
+17:10:14
+xgboost 14.867 0.7478858
+
+17:10:21
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+17:10:21
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+17:10:21
+Try to set boost_from_average=false, if your old models produce bad results
+
+17:10:21
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.014783 seconds.
+
+17:10:21
+You can set `force_row_wise=true` to remove the overhead.
+
+17:10:21
+And if memory is not enough, you can set `force_col_wise=true`.
+
+17:10:29
+8.353 0.7655526
+
+17:11:07
+catboost 35.629 0.7339091
+
+17:11:07
+10m:
+
+17:14:27
+xgboost 142.423 0.7539445
+
+17:15:17
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+17:15:17
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+17:15:17
+Try to set boost_from_average=false, if your old models produce bad results
+
+17:15:18
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.141700 seconds.
+
+17:15:18
+You can set `force_row_wise=true` to remove the overhead.
+
+17:15:18
+And if memory is not enough, you can set `force_col_wise=true`.
+
+17:16:23
+67.316 0.7745457
+
+17:22:40
+catboost 364.497 0.7358196 
+
+
+
+
+
+
+17:24:53
+0.1m:
+
+17:24:59
+xgboost 2.34 0.7338433
+
+17:25:02
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+17:25:02
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+17:25:02
+Try to set boost_from_average=false, if your old models produce bad results
+
+17:25:02
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.001804 seconds.
+
+17:25:02
+You can set `force_row_wise=true` to remove the overhead.
+
+17:25:02
+And if memory is not enough, you can set `force_col_wise=true`.
+
+17:25:06
+2.729 0.7301411
+
+17:25:11
+catboost 4.08 0.7223865
+
+17:25:11
+1m:
+
+17:25:36
+xgboost 16.359 0.7478858
+
+17:25:44
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+17:25:44
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+17:25:44
+Try to set boost_from_average=false, if your old models produce bad results
+
+17:25:44
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.016017 seconds.
+
+17:25:44
+You can set `force_row_wise=true` to remove the overhead.
+
+17:25:44
+And if memory is not enough, you can set `force_col_wise=true`.
+
+17:25:53
+8.601 0.7655526
+
+17:26:31
+catboost 35.882 0.7339091
+
+17:26:31
+10m:
+
+17:30:25
+xgboost 160.727 0.7539445
+
+17:31:28
+lightgbm [LightGBM] [Warning] Starting from the 2.1.2 version, default value for the "boost_from_average" parameter in "binary" objective is true.
+
+17:31:28
+This may cause significantly different results comparing to the previous versions of LightGBM.
+
+17:31:28
+Try to set boost_from_average=false, if your old models produce bad results
+
+17:31:28
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.145782 seconds.
+
+17:31:28
+You can set `force_row_wise=true` to remove the overhead.
+
+17:31:28
+And if memory is not enough, you can set `force_col_wise=true`.
+
+17:32:46
+79.579 0.7745457
+
+17:39:40
+catboost 401.541 0.7358196 

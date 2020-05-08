@@ -69,6 +69,39 @@
                     "data": [137, 117.5, 41, 37, 30, 30, 22]
                 }
             ]
+        },
+        {
+            "title": "GBM-perf Runtime (seconds, lower=better)",
+            "index": [
+                "xgboost 100K", "lightgbm 100K", "catboost 100K",
+                "xgboost 1M", "lightgbm 1M"
+            ],
+            "sets": [
+                {
+                    "name": "VM",
+                    "data": [1.819, 1.981, 3.412, 13.927, 7.257]
+                },
+                {
+                    "name": "Container",
+                    "data": [2.302, 2.594, 3.990, 15.555, 8.542]
+                }
+            ]
+        },
+        {
+            "title": "GBM-perf Runtime (seconds, lower=better)",
+            "index": [
+                "catboost 1M", "xgboost 10M", "lightgbm 10M", "catboost 10M"
+            ],
+            "sets": [
+                {
+                    "name": "VM",
+                    "data": [31.207, 133.887, 61.328, 315.617]
+                },
+                {
+                    "name": "Container",
+                    "data": [35.833, 149.434, 72.298, 378.843]
+                }
+            ]
         }
     ],
     "charts": [
