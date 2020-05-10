@@ -47,10 +47,6 @@
 
 \section{Problem Statement}
 
-NOTES:
-- include startup/shutdown times for VMs/containers
-- include image sizes for VMs/containers
-
 Modern cloud computing offers a vast array of options when deciding how to run an application. The traditional approach to this is to use VMs. This requires installing the application on an OS and exporting the entire disk image. When it comes time to run the application, or scale an existing setup, a new VM would be booted from this image. This is perfectly acceptable for services with a consistent workload, but for services such as web applications, databases, or anything where users come and go, or jobs run on a periodic schedule, the workload will likely fluctuate. This means it's important to scale the infrastructure up and down to get the best utilization, decreasing cost for the cloud user, and increasing effective capacity for the cloud provider. To do this, the isolation mechanism needs to be able to start up quickly. Additionally, it needs to have little overhead, so the hardware can be used to its full capacity.
 
 This report aims to identify specific differences and similarities between VMs and containers when using them as an end user on a cloud service, specifically AWS. To start off, it's important to know the basics of each, such as unit cost per hardware resource and startup times. However, the main subject of interest is performance under various workloads. How these technologies fair under common workload scenarios it an important deciding factor when choosing infrastructure. In addition to this, it also helps to pinpoint the cause of performance differences. This may help mitigate these problems for users who don't have much of a choice. Lastly, other factors besides cost and performance may be important for some users, such as level of isolation, so this is also investigated.
@@ -83,13 +79,14 @@ An important aspect for cloud users when choosing infrastructure is cost. We col
 
 Lastly, scalability is an important factor for cloud-based systems. If a system can scale well, it can meet user demand while also keeping costs to a minimum. To test this, we decided to use startup time as a metric for comparison. Based on existing work and knowledge, we assumed containers would be significantly faster in this area. However, Fargate is layered on top of ECS, which uses EC2 VMs as a base for running containers. This means for these two cloud services, Fargate containers are unable to spin up faster than EC2 instances. Additionally, we found that the Fargate startup method has other drawbacks. It will always pull the specified Docker image for every container that is started, causing long wait times for larger images. There's no option to cache the images, though ECS supports this. We also tried using the AWS container registry (ECR) to see if loading time was faster, though it turned out to be slower. We imagine this is due to Dockerhub having a more advanced CDN.
 
+
 \section{Evaluation}
 
-<Introduction>
+The evaluation process consisted of preparing the benchmarks (both micro and macro), running the benchmarks, collecting the metrics, generating charts, collecting additional information about the infrastructure, running startup tests, and finally making conclusions about which one makes more sense to use under different circumstances.
 
-<collecting metrics>
+In order to collect metrics, AWS CloudWatch was used to aggregate the data, which was then downloaded to be processed by our scripts. EC2 by default doesn't log to CloudWatch, so we installed the collectd plugin, which runs as a background process on the instance. This plugin collects a wide range of metrics at a fine-grained interval (1 second), however we only used the CPU and memory metrics due to the limitations of Fargate logging. Fargate does not collect disk utilization, likely since only a small amount of ephemeral storage is provided, as containers are usually stateless. It does provide CPU and memory metrics though, but only at a 5 second granularity. Running the plugin also required attaching an IAM role to the instance to give permission to push the metrics to CloudWatch. To pull the data from CloudWatch, we used a third-party Python script called CloudWatch-dump to download the data as CSV-like files. Since the minimum polling interval supported by this script was 5 minutes, we changing it to go down to 5 seconds.
 
-<producing charts>
+To conceptualize the data, it needed to be consolidated into charts. From the output of CloudWatch-dump, we were able to load the data into Pandas dataframes. This allowed us to format the data, take the average across several runs, then display the VM and container lines side-by-side for comparison. We also took data from other sources, such as the startup times, and put this into a custom JSON file in order to generate bar charts for easy comparison. This JSON file also included file paths to the data and chart labels.
 
 <idle/sysbench eval>
 
@@ -97,7 +94,10 @@ The first step to benchmarking with GBM-perf was to setup the images. For Docker
 
 GBM-perf was run 5 times on each platform, each producing CPU and memory metrics. The average was taken among these and graphed in a line plot. In terms of CPU utilization, the results were very similar for both, with the VM being slightly higher. This is likely due to the VM having better sequential read speed, combined with a more powerful processor, allowing it to process more data at once, resulting in higher utilization. The VM uses a Xeon Platinum 8175M with a clockspeed of 3.1 GHz, while the container uses a Xeon E5-2686 at 2.3 GHz. The memory utilization shows a similar pattern, with the VM being slightly higher. This is likely caused by idle consumption from background processes.
 
-<startup eval>
+<gbmperf runtimes>
+
+<startup eval, include image sizes>
+
 
 \section{Conclusion}
 
