@@ -85,6 +85,19 @@ Lastly, scalability is an important factor for cloud-based systems. If a system 
 
 \section{Evaluation}
 
+<Introduction>
+
+<collecting metrics>
+
+<producing charts>
+
+<idle/sysbench eval>
+
+The first step to benchmarking with GBM-perf was to setup the images. For Docker this was straightforward, since the source code included a Dockerfile to build from. The VM image was more involved, requiring backtracing the commands from the base images (rocker/tidyverse was the base image). Eventually this resulted in an installation script. After several test runs, it was discovered that at least 16 GB of memory is required to run all the GBM-perf benchmarks. A m5.xlarge instance was used for EC2, along with a gp2 (SSD) EBS volume. For Fargate, memory was set to 16 GB, along with 4 vCPUs. Fargate gets 20 GB of unspecified ephemeral storage, though from the benchmarks it seems like it's at least an SSD. More storage can be added with AWS EFS.
+
+GBM-perf was run 5 times on each platform, each producing CPU and memory metrics. The average was taken among these and graphed in a line plot. In terms of CPU utilization, the results were very similar for both, with the VM being slightly higher. This is likely due to the VM having better sequential read speed, combined with a more powerful processor, allowing it to process more data at once, resulting in higher utilization. The VM uses a Xeon Platinum 8175M with a clockspeed of 3.1 GHz, while the container uses a Xeon E5-2686 at 2.3 GHz. The memory utilization shows a similar pattern, with the VM being slightly higher. This is likely caused by idle consumption from background processes.
+
+<startup eval>
 
 \section{Conclusion}
 
