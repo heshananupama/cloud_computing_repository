@@ -4,7 +4,6 @@
 \usepackage{times}
 \usepackage{titlesec}
 \usepackage{fancyhdr} 
-\usepackage{pagecounting}
 \usepackage{color}
 \usepackage[yyyymmdd,hhmmss]{datetime}
 \usepackage{hyperref}
@@ -14,6 +13,12 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=ynt
+]{biblatex}
+\addbibresource{final.bib}
 
 \graphicspath{ {../../images/charts/} }
 
@@ -38,8 +43,9 @@
 
 \begin{center}
 {\LARGE \bf Project Final Report: Comparison Between Virtual Machines and Containers for Cloud End Users} \\
-{\normalsize \emph{Heshan Perera, Michael Ludwig}}\\
+{\normalsize \emph{Heshan Perera \& Michael Ludwig}}\\
 \end{center}
+
 
 % 1. The final report should be about 10-12 pages long using the same Latex template for paper review.
 % 2. It is okay to reuse texts from your proposal, but the final report should focus on the following questions. One way to think about the final report is to use the proposal as a roadmap and fill in with information including what you chose to do, and why you chose to do so.
@@ -162,7 +168,7 @@ The first step to benchmarking with GBM-perf was to setup the images. For Docker
   \label{fig:gbmperfu2}
 \end{subfigure}
 \caption{GBM-perf-Utilizations}
-\label{fig:rubis}
+\label{fig:gbmperfutilizations}
 \end{figure}
 
 GBM-perf was run 5 times on each platform, each producing CPU and memory metrics. The average was taken among these and graphed in a line plot. In terms of CPU utilization, the results were very similar for both, with the VM being slightly higher. This is likely due to the VM having better sequential read speed, combined with a more powerful processor, allowing it to process more data at once, resulting in higher utilization. The VM uses a Xeon Platinum 8175M with a clockspeed of 3.1 GHz, while the container uses a Xeon E5-2686 at 2.3 GHz. The memory utilization shows a similar pattern, with the VM being slightly higher. This is likely caused by idle consumption from background processes.
@@ -208,7 +214,7 @@ First we tested for the CPU using the brute-force prime number search. Figure 4(
   \caption{Sysbench CPU performance}
   \label{fig:sysb2}
 \end{subfigure}
-\caption{Sysbench-CPU}
+\caption{Sysbench - CPU}
 \label{fig:rubis}
 \end{figure}
 
@@ -229,20 +235,20 @@ When using the memory test in Sysbench, it will allocate a memory buffer and the
   \caption{Sysbench memory performance}
   \label{fig:sysbm2}
 \end{subfigure}
-\caption{Sysbench-memory}
+\caption{Sysbench - Memory}
 \label{fig:rubis}
 \end{figure}
 
-Finally, we did a comparison between the disk performances between the two systems. In the case of sequential reads, data is stored in consecutive blocks where in the case of random read, data is stored in random blocks all over the drive.  Accessing data sequentially is much faster than accessing it randomly because of the way in which the disk hardware works. In the case of VM's Figure 6 clearly support this idea where both the sequential reads and writes performs much faster than that of random reads and writes for both VM types used. However, in the case of containers, random read has much higher performances than the sequential reads. We believe the reason for this was either Fargates SSD model or the docker storage driver.  
+
 
 \begin{figure}[H]
 \centering
   \includegraphics[width=0.55\linewidth]{sysbench_disk.png}
-  \caption{Sysbench Disk}
+  \caption{Sysbench - Disk}
   \label{fig:disk}
 \end{figure}
 
-
+Finally, comparison between the disk performances between the two systems are shown in Figure 6. In the case of sequential reads, data is stored in consecutive blocks where in the case of random read, data is stored in random blocks all over the drive.  Accessing data sequentially is much faster than accessing it randomly because of the way in which the disk hardware works. In the case of VM's Figure 6 clearly support this idea where both the sequential reads and writes performs much faster than that of random reads and writes for both VM types used. However, in the case of containers, random read has much higher performances than the sequential reads. We believe the reason for this was either Fargates SSD model or the docker storage driver.  
 \subsection{Other measures}
 
 \vspace{5mm} %5mm vertical space
@@ -291,18 +297,16 @@ Measuring the startup time for EC2 instances involved writing a startup script t
 
 As a conclusion of our study, we could not explicitly say that one virtualization technology is superior to other as it depend on the different environments which they are operate and the ultimate decision will depend on your specific needs. 
 
+Virtual machines are much suitable for tasks that require high capacity disk locality such as relational databases. If there is not many traffic and if the requirement for scaling is lower, then VM's would be a better option as it's much easy to get start with and do not require resources that would typically needed in container environment. Other than that, if you need to build a legacy system which manage multiple applications on a single server and requires most resources and functionalities of an OS then it would be better to go with VM's. Though it was claimed that VM's ensure full isolation and security than containers, with the use of technologies like Firecracker had made the containers equally isolated and secured as VM's.
 
-.... need more....
+In the case of containers, they are much useful and easier to manage for stateless services. Containers are also a perfect fit for Micro-service architectures where the an application structure as a collection of services that are loosely coupled, highly maintainable and testable. Presence of state of art orchestration systems like kubernetes will also increase the manageability of these architectures. Finally, containers would also suitable for technologies such as lambda which executes your program logic once required and have the capability to handle burst workloads, from a few requests to thousands per second without having to pay much.
+
 
 
 
 \section{Division of Work}
 
 
-
-
-
-\bibliography{final}{}
-\bibliographystyle{plain}
+\printbibliography
 
 \end{document}
