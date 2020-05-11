@@ -1,0 +1,58 @@
+\begin{thebibliography}{1}
+
+\bibitem{fargate}
+Under the hood: Aws fargate data plane.
+\newblock
+  \url{https://aws.amazon.com/blogs/containers/under-the-hood-fargate-data-plane/}.
+\newblock Accessed: 2020-04-25.
+
+\bibitem{246288}
+Alexandru Agache, Marc Brooker, Alexandra Iordache, Anthony Liguori, Rolf
+  Neugebauer, Phil Piwonka, and Diana-Maria Popa.
+\newblock Firecracker: Lightweight virtualization for serverless applications.
+\newblock In {\em 17th {USENIX} Symposium on Networked Systems Design and
+  Implementation ({NSDI} 20)}, pages 419--434, Santa Clara, CA, February 2020.
+  {USENIX} Association.
+
+\bibitem{Casalicchio2019}
+Emiliano Casalicchio.
+\newblock {\em Container Orchestration: A Survey}, pages 221--235.
+\newblock Springer International Publishing, Cham, 2019.
+
+\bibitem{7095802}
+W.~{Felter}, A.~{Ferreira}, R.~{Rajamony}, and J.~{Rubio}.
+\newblock An updated performance comparison of virtual machines and linux
+  containers.
+\newblock In {\em 2015 IEEE International Symposium on Performance Analysis of
+  Systems and Software (ISPASS)}, pages 171--172, 2015.
+
+\bibitem{7484185}
+H.~{Kang}, M.~{Le}, and S.~{Tao}.
+\newblock Container and microservice driven design for cloud infrastructure
+  devops.
+\newblock In {\em 2016 IEEE International Conference on Cloud Engineering
+  (IC2E)}, pages 202--211, 2016.
+
+\bibitem{10.1145/3274694.3274720}
+Xin Lin, Lingguang Lei, Yuewu Wang, Jiwu Jing, Kun Sun, and Quan Zhou.
+\newblock A measurement study on linux container security: Attacks and
+  countermeasures.
+\newblock In {\em Proceedings of the 34th Annual Computer Security Applications
+  Conference}, ACSAC ’18, page 418–429, New York, NY, USA, 2018.
+  Association for Computing Machinery.
+
+\bibitem{7899408}
+T.~{Salah}, M.~J. {Zemerly}, C.~Y. {Yeun}, M.~{Al-Qutayri}, and
+  Y.~{Al-Hammadi}.
+\newblock Performance comparison between container-based and vm-based services.
+\newblock In {\em 2017 20th Conference on Innovations in Clouds, Internet and
+  Networks (ICIN)}, pages 185--190, 2017.
+
+\bibitem{10.1145/2988336.2988337}
+Prateek Sharma, Lucas Chaufournier, Prashant Shenoy, and Y.~C. Tay.
+\newblock Containers and virtual machines at scale: A comparative study.
+\newblock In {\em Proceedings of the 17th International Middleware Conference},
+  Middleware ’16, New York, NY, USA, 2016. Association for Computing
+  Machinery.
+
+\end{thebibliography}
