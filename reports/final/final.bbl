@@ -1,58 +1,395 @@
-\begin{thebibliography}{1}
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem{fargate}
-Under the hood: Aws fargate data plane.
-\newblock
-  \url{https://aws.amazon.com/blogs/containers/under-the-hood-fargate-data-plane/}.
-\newblock Accessed: 2020-04-25.
 
-\bibitem{246288}
-Alexandru Agache, Marc Brooker, Alexandra Iordache, Anthony Liguori, Rolf
-  Neugebauer, Phil Piwonka, and Diana-Maria Popa.
-\newblock Firecracker: Lightweight virtualization for serverless applications.
-\newblock In {\em 17th {USENIX} Symposium on Networked Systems Design and
-  Implementation ({NSDI} 20)}, pages 419--434, Santa Clara, CA, February 2020.
-  {USENIX} Association.
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{7095802}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=f48dfc8c4c0a49431fc9b3342154abf1}{%
+           family={{Felter}},
+           familyi={F\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=6a9016be0a0a1e40a3eee6396c9bf64b}{%
+           family={{Ferreira}},
+           familyi={F\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3308791e8f77d58fa7464f29607c94ee}{%
+           family={{Rajamony}},
+           familyi={R\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=357e333bd23132f4908c43ce8d704f81}{%
+           family={{Rubio}},
+           familyi={R\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{f49c2da34264936e5f582a9fdc2d2bc1}
+      \strng{fullhash}{5cf08d119772514dd187a20e22fcce8d}
+      \strng{bibnamehash}{5cf08d119772514dd187a20e22fcce8d}
+      \strng{authorbibnamehash}{5cf08d119772514dd187a20e22fcce8d}
+      \strng{authornamehash}{f49c2da34264936e5f582a9fdc2d2bc1}
+      \strng{authorfullhash}{5cf08d119772514dd187a20e22fcce8d}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2015 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)}
+      \field{title}{An updated performance comparison of virtual machines and Linux containers}
+      \field{year}{2015}
+      \field{pages}{171\bibrangedash 172}
+      \range{pages}{2}
+    \endentry
+    \entry{7484185}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=292bf47e740cde30b2a7756b6b159535}{%
+           family={{Kang}},
+           familyi={K\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=61c59af2a42a58d8d0dea7e59bb6cf70}{%
+           family={{Le}},
+           familyi={L\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e3e243e5ecce99fe4b0991f8e1ab6706}{%
+           family={{Tao}},
+           familyi={T\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{a674f613e7c4d0ea7d64e42453e3c7f7}
+      \strng{fullhash}{a674f613e7c4d0ea7d64e42453e3c7f7}
+      \strng{bibnamehash}{a674f613e7c4d0ea7d64e42453e3c7f7}
+      \strng{authorbibnamehash}{a674f613e7c4d0ea7d64e42453e3c7f7}
+      \strng{authornamehash}{a674f613e7c4d0ea7d64e42453e3c7f7}
+      \strng{authorfullhash}{a674f613e7c4d0ea7d64e42453e3c7f7}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2016 IEEE International Conference on Cloud Engineering (IC2E)}
+      \field{title}{Container and Microservice Driven Design for Cloud Infrastructure DevOps}
+      \field{year}{2016}
+      \field{pages}{202\bibrangedash 211}
+      \range{pages}{10}
+    \endentry
+    \entry{10.1145/2988336.2988337}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=b63b228a3253a4cfd66919448a7dd374}{%
+           family={Sharma},
+           familyi={S\bibinitperiod},
+           given={Prateek},
+           giveni={P\bibinitperiod}}}%
+        {{hash=9e17e099532bf3a14bde416f58efc47a}{%
+           family={Chaufournier},
+           familyi={C\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=f724cb1245a6aacab30327a4138fc989}{%
+           family={Shenoy},
+           familyi={S\bibinitperiod},
+           given={Prashant},
+           giveni={P\bibinitperiod}}}%
+        {{hash=ee56df5894c0e39b25d04ae5b9e5d34a}{%
+           family={Tay},
+           familyi={T\bibinitperiod},
+           given={Y.\bibnamedelimi C.},
+           giveni={Y\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Trento, Italy}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{d8e75cf21dbf0569f42d5499d0c1d0cc}
+      \strng{fullhash}{4c4a3dc354403b7ff03427f3c16f66d6}
+      \strng{bibnamehash}{4c4a3dc354403b7ff03427f3c16f66d6}
+      \strng{authorbibnamehash}{4c4a3dc354403b7ff03427f3c16f66d6}
+      \strng{authornamehash}{d8e75cf21dbf0569f42d5499d0c1d0cc}
+      \strng{authorfullhash}{4c4a3dc354403b7ff03427f3c16f66d6}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 17th International Middleware Conference}
+      \field{isbn}{9781450343008}
+      \field{series}{Middleware ’16}
+      \field{title}{Containers and Virtual Machines at Scale: A Comparative Study}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1145/2988336.2988337
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/2988336.2988337
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/2988336.2988337
+      \endverb
+    \endentry
+    \entry{7899408}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=1a42c0ac5166f2878f9c6bc6bd22568e}{%
+           family={{Salah}},
+           familyi={S\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=0d91c5ce4e27c267bcfdf3a7921d9407}{%
+           family={{Zemerly}},
+           familyi={Z\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=df587e37172c99fb693f20abea10a86f}{%
+           family={{Yeun}},
+           familyi={Y\bibinitperiod},
+           given={C.\bibnamedelimi Y.},
+           giveni={C\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=90793ed6e0366c09940803f8f46254d0}{%
+           family={{Al-Qutayri}},
+           familyi={A\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=47ca6fc89f96b20764d9d38f5dddda11}{%
+           family={{Al-Hammadi}},
+           familyi={A\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{0562ded489647a45c9acf1676ee820d0}
+      \strng{fullhash}{44d0f580858d3df497fe8987be3491c3}
+      \strng{bibnamehash}{44d0f580858d3df497fe8987be3491c3}
+      \strng{authorbibnamehash}{44d0f580858d3df497fe8987be3491c3}
+      \strng{authornamehash}{0562ded489647a45c9acf1676ee820d0}
+      \strng{authorfullhash}{44d0f580858d3df497fe8987be3491c3}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 20th Conference on Innovations in Clouds, Internet and Networks (ICIN)}
+      \field{title}{Performance comparison between container-based and VM-based services}
+      \field{year}{2017}
+      \field{pages}{185\bibrangedash 190}
+      \range{pages}{6}
+    \endentry
+    \entry{10.1145/3274694.3274720}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=4009e963a9f7a218cfa1e91b974fefa0}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=a24bea4d8442d4eb90d273d3ffaed3bf}{%
+           family={Lei},
+           familyi={L\bibinitperiod},
+           given={Lingguang},
+           giveni={L\bibinitperiod}}}%
+        {{hash=90dd6f71162fb69dd9171f4c96b79518}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yuewu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5a381f63cdd1c229d7205de891a4fbc4}{%
+           family={Jing},
+           familyi={J\bibinitperiod},
+           given={Jiwu},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8016fcef174ea5388b737fab7c4e1672}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=d3c3e9bdc367d0e76a52de2dc29e2d1a}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Quan},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Juan, PR, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{c573a8bf21ac7f7d2579ae7af9c6941d}
+      \strng{fullhash}{b6ce7524174351996f27a646c8658c40}
+      \strng{bibnamehash}{b6ce7524174351996f27a646c8658c40}
+      \strng{authorbibnamehash}{b6ce7524174351996f27a646c8658c40}
+      \strng{authornamehash}{c573a8bf21ac7f7d2579ae7af9c6941d}
+      \strng{authorfullhash}{b6ce7524174351996f27a646c8658c40}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 34th Annual Computer Security Applications Conference}
+      \field{isbn}{9781450365697}
+      \field{series}{ACSAC ’18}
+      \field{title}{A Measurement Study on Linux Container Security: Attacks and Countermeasures}
+      \field{year}{2018}
+      \field{pages}{418\bibrangedash 429}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/3274694.3274720
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3274694.3274720
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3274694.3274720
+      \endverb
+      \keyw{Kernel Security Mechanisms,Privilege Escalation,Container}
+    \endentry
+    \entry{Casalicchio2019}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=2bf4f3a505e556d861349e65971197c8}{%
+           family={Casalicchio},
+           familyi={C\bibinitperiod},
+           given={Emiliano},
+           giveni={E\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=484f442bff317a64b3864cc189009cc5}{%
+           family={Puliafito},
+           familyi={P\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=843761054f990f7444cd8196b3e80a84}{%
+           family={Trivedi},
+           familyi={T\bibinitperiod},
+           given={Kishor\bibnamedelima S.},
+           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{2bf4f3a505e556d861349e65971197c8}
+      \strng{fullhash}{2bf4f3a505e556d861349e65971197c8}
+      \strng{bibnamehash}{2bf4f3a505e556d861349e65971197c8}
+      \strng{authorbibnamehash}{2bf4f3a505e556d861349e65971197c8}
+      \strng{authornamehash}{2bf4f3a505e556d861349e65971197c8}
+      \strng{authorfullhash}{2bf4f3a505e556d861349e65971197c8}
+      \strng{editorbibnamehash}{596a9fe59766d413a6a164ea54b631e4}
+      \strng{editornamehash}{596a9fe59766d413a6a164ea54b631e4}
+      \strng{editorfullhash}{596a9fe59766d413a6a164ea54b631e4}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Container technologies are changing the way cloud platforms and distributed applications are architected and managed. Containers are used to run enterprise, scientific and big data applications, to architect IoT and edge/fog computing systems, and by cloud providers to internally manage their infrastructure and services. However, we are far away from the maturity stage and there are still many research challenges to be solved. One of them is container orchestration that makes it possible to define how to select, deploy, monitor, and dynamically control the configuration of multi-container packaged applications in the cloud. This paper surveys the state-of-the-art solutions and discusses research challenges in autonomic orchestration of containers. A reference architecture of an autonomic container orchestrator is also proposed.}
+      \field{booktitle}{Systems Modeling: Methodologies and Tools}
+      \field{isbn}{978-3-319-92378-9}
+      \field{title}{Container Orchestration: A Survey}
+      \field{year}{2019}
+      \field{pages}{221\bibrangedash 235}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1007/978-3-319-92378-9_14
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-319-92378-9_14
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-319-92378-9_14
+      \endverb
+    \endentry
+    \entry{246288}{inproceedings}{}
+      \name{author}{7}{}{%
+        {{hash=801daa22684483ff154ba832767424f5}{%
+           family={Agache},
+           familyi={A\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=37ab8016df037eabf3dec67d4d37408d}{%
+           family={Brooker},
+           familyi={B\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c1d73171754244a57e7bbbf3d5194ae2}{%
+           family={Iordache},
+           familyi={I\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bf57e75d7dec1849ec9d9253370f6b2f}{%
+           family={Liguori},
+           familyi={L\bibinitperiod},
+           given={Anthony},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fa3ae5e343a7c6399697a3aaffd5d05a}{%
+           family={Neugebauer},
+           familyi={N\bibinitperiod},
+           given={Rolf},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ce3d0512d4f2cce08501969ffe4f9e80}{%
+           family={Piwonka},
+           familyi={P\bibinitperiod},
+           given={Phil},
+           giveni={P\bibinitperiod}}}%
+        {{hash=1cd882573536e6f62286b38d5e19918d}{%
+           family={Popa},
+           familyi={P\bibinitperiod},
+           given={Diana-Maria},
+           giveni={D\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Santa Clara, CA}%
+      }
+      \list{publisher}{1}{%
+        {{USENIX} Association}%
+      }
+      \strng{namehash}{3e1fd2567eee908c78128c07bf9107fc}
+      \strng{fullhash}{f9435a1b2baff3e7a1a1499ff6205917}
+      \strng{bibnamehash}{f9435a1b2baff3e7a1a1499ff6205917}
+      \strng{authorbibnamehash}{f9435a1b2baff3e7a1a1499ff6205917}
+      \strng{authornamehash}{3e1fd2567eee908c78128c07bf9107fc}
+      \strng{authorfullhash}{f9435a1b2baff3e7a1a1499ff6205917}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{17th {USENIX} Symposium on Networked Systems Design and Implementation ({NSDI} 20)}
+      \field{isbn}{978-1-939133-13-7}
+      \field{month}{2}
+      \field{title}{Firecracker: Lightweight Virtualization for Serverless Applications}
+      \field{year}{2020}
+      \field{pages}{419\bibrangedash 434}
+      \range{pages}{16}
+      \verb{urlraw}
+      \verb https://www.usenix.org/conference/nsdi20/presentation/agache
+      \endverb
+      \verb{url}
+      \verb https://www.usenix.org/conference/nsdi20/presentation/agache
+      \endverb
+    \endentry
+    \entry{fargate}{misc}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://aws.amazon.com/blogs/containers/under-the-hood-fargate-data-plane/}}
+      \field{note}{Accessed: 2020-04-25}
+      \field{title}{Under the hood: AWS Fargate data plane}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
 
-\bibitem{Casalicchio2019}
-Emiliano Casalicchio.
-\newblock {\em Container Orchestration: A Survey}, pages 221--235.
-\newblock Springer International Publishing, Cham, 2019.
-
-\bibitem{7095802}
-W.~{Felter}, A.~{Ferreira}, R.~{Rajamony}, and J.~{Rubio}.
-\newblock An updated performance comparison of virtual machines and linux
-  containers.
-\newblock In {\em 2015 IEEE International Symposium on Performance Analysis of
-  Systems and Software (ISPASS)}, pages 171--172, 2015.
-
-\bibitem{7484185}
-H.~{Kang}, M.~{Le}, and S.~{Tao}.
-\newblock Container and microservice driven design for cloud infrastructure
-  devops.
-\newblock In {\em 2016 IEEE International Conference on Cloud Engineering
-  (IC2E)}, pages 202--211, 2016.
-
-\bibitem{10.1145/3274694.3274720}
-Xin Lin, Lingguang Lei, Yuewu Wang, Jiwu Jing, Kun Sun, and Quan Zhou.
-\newblock A measurement study on linux container security: Attacks and
-  countermeasures.
-\newblock In {\em Proceedings of the 34th Annual Computer Security Applications
-  Conference}, ACSAC ’18, page 418–429, New York, NY, USA, 2018.
-  Association for Computing Machinery.
-
-\bibitem{7899408}
-T.~{Salah}, M.~J. {Zemerly}, C.~Y. {Yeun}, M.~{Al-Qutayri}, and
-  Y.~{Al-Hammadi}.
-\newblock Performance comparison between container-based and vm-based services.
-\newblock In {\em 2017 20th Conference on Innovations in Clouds, Internet and
-  Networks (ICIN)}, pages 185--190, 2017.
-
-\bibitem{10.1145/2988336.2988337}
-Prateek Sharma, Lucas Chaufournier, Prashant Shenoy, and Y.~C. Tay.
-\newblock Containers and virtual machines at scale: A comparative study.
-\newblock In {\em Proceedings of the 17th International Middleware Conference},
-  Middleware ’16, New York, NY, USA, 2016. Association for Computing
-  Machinery.
-
-\end{thebibliography}
