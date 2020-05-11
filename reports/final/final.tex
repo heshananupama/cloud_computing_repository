@@ -10,6 +10,12 @@
 \usepackage{hyperref}
 \usepackage{lastpage}
 \usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+\graphicspath{ {../../images/charts/} }
 
 \newcommand\bb[1]{\mbox{\em #1}}
 \newcommand{\eat}[1]{}
@@ -44,12 +50,14 @@
 %     e. The conclusion section which should provide readers the key takeaways and describe any other solutions that were attempted and potential solutions.
 %     f. The division of work done by each team member.
 
+\vspace{3mm} %3mm vertical space
 
 \section{Problem Statement}
 
 Modern cloud computing offers a vast array of options when deciding how to run an application. The traditional approach to this is to use VMs. This requires installing the application on an OS and exporting the entire disk image. When it comes time to run the application, or scale an existing setup, a new VM would be booted from this image. This is perfectly acceptable for services with a consistent workload, but for services such as web applications, databases, or anything where users come and go, or jobs run on a periodic schedule, the workload will likely fluctuate. This means it's important to scale the infrastructure up and down to get the best utilization, decreasing cost for the cloud user, and increasing effective capacity for the cloud provider. To do this, the isolation mechanism needs to be able to start up quickly. Additionally, it needs to have little overhead, so the hardware can be used to its full capacity.
 
 This report aims to identify specific differences and similarities between VMs and containers when using them as an end user on a cloud service, specifically AWS. To start off, it's important to know the basics of each, such as unit cost per hardware resource and startup times. However, the main subject of interest is performance under various workloads. How these technologies fair under common workload scenarios it an important deciding factor when choosing infrastructure. In addition to this, it also helps to pinpoint the cause of performance differences. This may help mitigate these problems for users who don't have much of a choice. Lastly, other factors besides cost and performance may be important for some users, such as level of isolation, so this is also investigated.
+\vspace{3mm} %3mm vertical space
 
 
 \section{Related Work}
@@ -66,12 +74,13 @@ In terms of security, containers are often considered less secure, in large part
 Countermeasures" by Lin et al confirms this by running 223 exploits on containers and finding that 11 of them break container isolation. They find that the container runtime doesn't provide enough security, as over 50\% of 88 exploits they tested in-depth ran on both the host and inside the container. "Firecracker: Lightweight Virtualization
 for Serverless Applications" by Agache et al aims to fix this. Firecracker uses micro VMs to achieve half the boot time of leading hypervisors and maintain the same level of isolation. It does this by cutting down on unnecesary kernel components and providing a minimal manager process. Although technically this is VM technology, it has the same goals as containers and is compatible with the Docker ecosystem. Our experiments use Firecracker as part of the latest version of AWS Fargate.
 
+\vspace{3mm} %3mm vertical space
 
 \section{Key Ideas}
 
-In order to get a good understanding of real world performance difference between VMs and containers, two different macro benchmarks were used that mimic real-world workloads: GBM-perf and RUBiS. GBM-perf is an inference workload for machine learning models that use gradient boosting, a popular ensemble technique. We chose this benchmark due to the popularity of ML inference among cloud users and its applicability to various applications. The benchmark consists of three libraries: xgboost, catboost, and lightgbm, each of which is run on 100K, 1M, and 10M records of the airline dataset. GBM-perf is mainly CPU-bound, with a small amount of sequential disk access, as well as memory access.
+In order to get a good understanding of real world performance difference between VMs and containers, two different macro benchmarks were used that mimic real-world workloads: GBM-perf and RUBiS. GBM-perf is an inference workload for machine learning models that use gradient boosting, a popular ensemble technique. We chose this benchmark due to the popularity of ML inference among cloud users and its applicability to various applications. The benchmark consists of three libraries: xgboost, catboost, and lightgbm, each of which is run on 100K, 1M, and 10M records of the airline dataset. GBM-perf is mainly CPU-bound, with a small amount of sequential disk access, as well as memory access. RUBiS is an open-source auction site prototype modeled after eBay.com developed by Rice University. It has been widely used as a benchmark in the area of network research. The workload generated for RUBiS is a continuous stream of HTTP requests to the website for a specified period of time. Configurations could be changed in order to generate a different workloads such as one with increased number of clients. 
 
-In order to explain the benchmark results, we used several micro benchmarks to pinpoint discrepancies for specific resources. To do this, we used Sysbench. To test CPU, Sysbench runs a brute-force prime number search. This gives a sufficient comparison given the variables that can affect CPU performance, despite the lack of advanced instructions being used. For the memory test, Sysbench allocates a memory buffer, then writes and reads blocks of data to and from it. Memory performance will impact workloads that operate on large sets of data at once, such as many common database operations, including joins, filters, and even reading several records. For disk performance, Sysbench generates a set of files, which are then read and written sequentiallty and randomly. Random read and write performance is good for workloads such as web applications, where many requests for unrelated data (from different users) occur, causing the disk to be accessed from non-contiguous locations. Sequential access is better for data processing tasks such as training an ML model or computing summary statistics on a dataset, which usually read from datasets and write intermediate parts sequentially. Using these micro benchmarks was the primary method we used to explain the macro benchmark behavior, and provide another dimension to our overall comparison.
+In order to explain the benchmark results, we used several micro benchmarks to pinpoint discrepancies for specific resources. To do this, we used Sysbench as it was simple to use and provide benchmarks by default. To test CPU, Sysbench runs a brute-force prime number search. This gives a sufficient comparison given the variables that can affect CPU performance, despite the lack of advanced instructions being used. For the memory test, Sysbench allocates a memory buffer, then writes and reads blocks of data to and from it. Memory performance will impact workloads that operate on large sets of data at once, such as many common database operations, including joins, filters, and even reading several records. For disk performance, Sysbench generates a set of files, which are then read and written sequentiallty and randomly. Random read and write performance is good for workloads such as web applications, where many requests for unrelated data (from different users) occur, causing the disk to be accessed from non-contiguous locations. Sequential access is better for data processing tasks such as training an ML model or computing summary statistics on a dataset, which usually read from datasets and write intermediate parts sequentially. Using these micro benchmarks was the primary method we used to explain the macro benchmark behavior, and provide another dimension to our overall comparison.
 
 Another measurement to aid comparison was idle resource consumption. The idea is that since VMs generally run full-fledged OSes, several background processes take up memory and a non-zero amount of CPU and disk usage. Containers, on the other hand, generally only have a single process (including any forked processes). It is possible to slim down a VM, but we still wanted to include this test to see if it's even worth it, as many VM images are not built this way. For further information about CPU, the model number was gathered for comparison.
 
@@ -79,8 +88,10 @@ An important aspect for cloud users when choosing infrastructure is cost. We col
 
 Lastly, scalability is an important factor for cloud-based systems. If a system can scale well, it can meet user demand while also keeping costs to a minimum. To test this, we decided to use startup time as a metric for comparison. Based on existing work and knowledge, we assumed containers would be significantly faster in this area. However, Fargate is layered on top of ECS, which uses EC2 VMs as a base for running containers. This means for these two cloud services, Fargate containers are unable to spin up faster than EC2 instances. Additionally, we found that the Fargate startup method has other drawbacks. It will always pull the specified Docker image for every container that is started, causing long wait times for larger images. There's no option to cache the images, though ECS supports this. We also tried using the AWS container registry (ECR) to see if loading time was faster, though it turned out to be slower. We imagine this is due to Dockerhub having a more advanced CDN.
 
+\vspace{3mm} %3mm vertical space
 
 \section{Evaluation}
+\vspace{5mm} %5mm vertical space
 
 The evaluation process consisted of preparing the benchmarks (both micro and macro), running the benchmarks, collecting the metrics, generating charts, collecting additional information about the infrastructure, running startup tests, and finally making conclusions about which one makes more sense to use under different circumstances.
 
@@ -88,18 +99,203 @@ In order to collect metrics, AWS CloudWatch was used to aggregate the data, whic
 
 To conceptualize the data, it needed to be consolidated into charts. From the output of CloudWatch-dump, we were able to load the data into Pandas dataframes. This allowed us to format the data, take the average across several runs, then display the VM and container lines side-by-side for comparison. We also took data from other sources, such as the startup times, and put this into a custom JSON file in order to generate bar charts for easy comparison. This JSON file also included file paths to the data and chart labels.
 
-<idle/sysbench eval>
+\subsection{RUBiS}
+
+We ran the RUBiS benchmark with a HTTP workload of 1000 and 3000 concurrent clients and the Figure 1 (a) and (b) shows the results of the memory and CPU usage during the two runs of the experiment.
+
+\begin{figure}[hbt!]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{rubis_cpu_util.png}
+  \caption{RUBiS CPU utilization}
+  \label{fig:rub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{rubis_mem_util.png}
+  \caption{RUBiS Memory utilization}
+  \label{fig:rub2}
+\end{subfigure}
+\caption{RUBiS}
+\label{fig:rubis}
+\end{figure}
+
+Though memory and CPU usage does increase with the increase of number of concurrent clients, the increment is not linear in every aspect. In VM’s CPU usage increases with a factor of about 20x times. But the containers have about 3x increment and in the case of memory, VM's seems to be having a linear relationship but not the containers. Though the VM's seems to utilize less memory and the CPU for 1000 clients, it is not the case at the level of 3000 concurrent clients as containers have a lesser memory and CPU consumption at that level. As we have kept all the CPU and memory equal for both VM's and containers, the only thing we think of this inconsistency is related to disk as explained by micro-benchmarks.
+
+Other than the CPU and memory utilizations Table 1 represent a brief summary of related to the of requests made by each instance with 1000 and 3000 clients respectively. One thing to notice here is with the increase of number of clients, VM's increase the number of requests exponentially while compared with the ECS. We also tuned the number of clients parameter further and realized that containers could not handle more than 3000 clients with the current configuration while VM's could go up to a level of 5000 clients. 
+
+\begin{center}
+\captionsetup[table]{position=bottom}
+ \begin{tabular}{||c c c ||} 
+ \hline
+ Instance \& Clients & Total number of requests & Average throughput  \\ [0.5ex] 
+ \hline
+ ECS - 1000 & 389165 & 161 req/s  \\ 
+ \hline
+ EC2 - 1000 & 34971 & 14 req/s \\ 
+ \hline
+ ECS - 3000 & 1192166 & 496 req/s  \\ 
+ \hline
+ EC2 - 3000 & 1062825 & 452 req/s \\ 
+  \hline
+
+\end{tabular}
+\captionof{table}{ECS \& EC2 Summary} 
+
+\end{center}
+
+\subsection{GBM-perf}
 
 The first step to benchmarking with GBM-perf was to setup the images. For Docker this was straightforward, since the source code included a Dockerfile to build from. The VM image was more involved, requiring backtracing the commands from the base images (rocker/tidyverse was the base image). Eventually this resulted in an installation script. After several test runs, it was discovered that at least 16 GB of memory is required to run all the GBM-perf benchmarks. A m5.xlarge instance was used for EC2, along with a gp2 (SSD) EBS volume. For Fargate, memory was set to 16 GB, along with 4 vCPUs. Fargate gets 20 GB of unspecified ephemeral storage, though from the benchmarks it seems like it's at least an SSD. More storage can be added with AWS EFS.
 
+\begin{figure}[hbt!]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{gbmperf_cpu_util.png}
+  \caption{CPU}
+  \label{fig:gbmperfu1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{gbmperf_mem_util.png}
+  \caption{Memory}
+  \label{fig:gbmperfu2}
+\end{subfigure}
+\caption{GBM-perf-Utilizations}
+\label{fig:rubis}
+\end{figure}
+
 GBM-perf was run 5 times on each platform, each producing CPU and memory metrics. The average was taken among these and graphed in a line plot. In terms of CPU utilization, the results were very similar for both, with the VM being slightly higher. This is likely due to the VM having better sequential read speed, combined with a more powerful processor, allowing it to process more data at once, resulting in higher utilization. The VM uses a Xeon Platinum 8175M with a clockspeed of 3.1 GHz, while the container uses a Xeon E5-2686 at 2.3 GHz. The memory utilization shows a similar pattern, with the VM being slightly higher. This is likely caused by idle consumption from background processes.
+
+\begin{figure}[hbt!]
+  \centering
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=1.1\linewidth]{gbmperf_runtime_1.png}
+    \caption{runtime-1}
+    \label{fig:gbmperfr1}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=1.1\linewidth]{gbmperf_runtime_2.png}
+    \caption{runtime-2}
+    \label{fig:gbmperfr2}
+  \end{subfigure}
+  \caption{GBM-perf-runtime}
+  \label{fig:rubis}
+\end{figure}
 
 The primary results of the GBM-perf benchmark is the runtime. The benchmark also produces the training accuracy, but this is deterministic, since both use the same dataset. In all cases the VM outperformed the container, with the average runtime being 15.19\% faster. For example, for the catboost library on the 10M dataset, the VM took 316 seconds, while the container took 379 seconds. This discrepancy is most likely attributed to the speed and ISA of the CPU, as well as the sequential read speed of the disk. Not considering other factors, this benchmark concludes that EC2 is the preferable service for CPU dominant workloads.
 
-Measuring the startup time for EC2 instances involved writing a startup script that would print the timestamp right after the instance startup request was sent to AWS. The VM was then setup to print a timestamp when a custom systemd service was started on boot. This difference represents the effective time it would to successfully scale a service. Containers were measured similarly by taking the difference between the time the ECS service was updated with a higher number of replicas to when the entry command was run. We tested going from 0 to 1 replicas and from 1 to 3 replicas, but the startup time was the same. Despite assuming the opposite, VMs turned out to startup faster in all cases. This is due to how Fargate operates, as described earlier. Several different scenarios were tested. For EC2 we measure the t2.small instance type with an 8 GB EBS volume for both a plain Ubuntu image and RUBiS. We also tested GBM-perf on a m5.xlarge. These configurations would account for instance size, startup processes, and disk size. The measured times were 22, 30, and 37 seconds. We found a smaller disk size resulted in a faster startup time due to having less data that needs to be copied. Additionally, the startup tasks of the RUBiS image took time to complete. For Fargate, we had the following configurations ([image, size, vCPU/memory]): [alpine, 3 MB, 4/16], [alpine, 3 MB, 1/2], [gbm-perf, 1.5 GB on ECR, 4/16], [gbm-perf, 1.5 GB, 4/16]. The resulting times for these were 30, 37, 117.5, and 137 seconds averaged across 3 runs. The longer time to start a container with lower resources was unexpected, and may be caused by the way Fargate does scheduling. We ran this another 3 times to verify, but got the same result. Larger images sizes have a drastic impact on startup time, since these need to be pulled from the Internet and are not cached locally. Images stored on ECR take even longer. From these findings, EC2 is preferred over Fargate for scaling unless working with small images. Another option would be to use ECS with the image caching feature, though this requires managing EC2 instances manually.
+
+\subsection{Sysbench}
+
+As we already explained, we selected Sysbench to carry out the micro-benchmarking of VM's and containers. In addition to compare the different measures between the two systems, it helped us to explain the results that we obtained from the macro-benchmarking too. 
+
+First we tested for the CPU using the brute-force prime number search. Figure 4(a) represents the CPU utilizations during the test and during the first half of the test, both the containers and VM's have utilized almost 100\% of the CPU but have changes during the next phase. Figure 4(b) represent the time that took to finish the test and clearly, VM's had completed the test quicker than the container. Among the two VM's used c5 instance which is designed to compute intensive workloads performed greater than the m5 instance which is typically used for general purpose workloads. 
+
+\begin{figure}[hbt!]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{sysbench_cpu.png}
+  \caption{Sysbench CPU utilization}
+  \label{fig:sysb1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{sysbench_cpu_bar.png}
+  \caption{Sysbench CPU performance}
+  \label{fig:sysb2}
+\end{subfigure}
+\caption{Sysbench-CPU}
+\label{fig:rubis}
+\end{figure}
+
+When using the memory test in Sysbench, it will allocate a memory buffer and then read or write from it. According to the results of the test shown in Figure 5, generally it meets with the standard results where the memory reads are typically much faster than the memory writes. When comparing with the VM's and containers, containers seem to perform much better than the containers for reads but they seem to have identical performances for the writes. The memory utilizaion values are negligible as the block size used in the test was just 2MB which is negligible when compared to the available memory. 
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{sysbench_mem.png}
+  \caption{Sysbench memory utilization}
+  \label{fig:sysbm1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{sysbench_mem_bar.png}
+  \caption{Sysbench memory performance}
+  \label{fig:sysbm2}
+\end{subfigure}
+\caption{Sysbench-memory}
+\label{fig:rubis}
+\end{figure}
+
+Finally, we did a comparison between the disk performances between the two systems. In the case of sequential reads, data is stored in consecutive blocks where in the case of random read, data is stored in random blocks all over the drive.  Accessing data sequentially is much faster than accessing it randomly because of the way in which the disk hardware works. In the case of VM's Figure 6 clearly support this idea where both the sequential reads and writes performs much faster than that of random reads and writes for both VM types used. However, in the case of containers, random read has much higher performances than the sequential reads. We believe the reason for this was either Fargates SSD model or the docker storage driver.  
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.55\linewidth]{sysbench_disk.png}
+  \caption{Sysbench Disk}
+  \label{fig:disk}
+\end{figure}
+
+
+\subsection{Other measures}
+
+\vspace{5mm} %5mm vertical space
+
+In addition to the benchmarks, we considered some other information for our comparison. Figure 7 confirmed that our speculation about the memory and CPU of VM's would have non zero values while the containers would have almost zero values for both the cases. 
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{idle_mem.png}
+  \caption{Memory idle}
+  \label{fig:idlemem}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{idle_cpu.png}
+  \caption{CPU idle}
+  \label{fig:idlecpu}
+\end{subfigure}
+\caption{Idle measures}
+\label{fig:rubis}
+\end{figure}
+
+\begin{table}[hbt!]
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+                           & m5.xlarge & ECS     & c5.xlarge  & ECS     & t2.small  & ECS     \\ \hline
+    Resources (vCPU / RAM) & 4/16      & 4/16    & 4/8        & 4/8     & 1/2       & 1/2     \\ \hline
+    Cost / hr              & 0.192     & 0.23304 & 0.17       & 0.19748 & 0.023     & 0.04937 \\ \hline
+    \end{tabular}
+    \captionof{table}{cost comparisons} 
+\end{table}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.55\linewidth]{startup_time.png}
+    \caption{Startup Time}
+    \label{fig:disk}
+\end{figure}
+
+Measuring the startup time for EC2 instances involved writing a startup script that would print the timestamp right after the instance startup request was sent to AWS. The VM was then setup to print a timestamp when a custom systemd service was started on boot. This difference represents the effective time it would to successfully scale a service. Containers were measured similarly by taking the difference between the time the ECS service was updated with a higher number of replicas to when the entry command was run. We tested going from 0 to 1 replicas and from 1 to 3 replicas, but the startup time was the same. Despite assuming the opposite, VMs turned out to startup faster in all cases. This is due to how Fargate operates, as described earlier. Several different scenarios were tested. For EC2 we measure the t2.small instance type with an 8 GB EBS volume for both a plain Ubuntu image and RUBiS. We also tested GBM-perf on a m5.xlarge. These configurations would account for instance size, startup processes, and disk size. The measured times were 22, 30, and 37 seconds (shown in figure 8). We found a smaller disk size resulted in a faster startup time due to having less data that needs to be copied. Additionally, the startup tasks of the RUBiS image took time to complete. For Fargate, we had the following configurations ([image, size, vCPU/memory]): [alpine, 3 MB, 4/16], [alpine, 3 MB, 1/2], [gbm-perf, 1.5 GB on ECR, 4/16], [gbm-perf, 1.5 GB, 4/16]. The resulting times for these were 30, 37, 117.5, and 137 seconds averaged across 3 runs. The longer time to start a container with lower resources was unexpected, and may be caused by the way Fargate does scheduling. We ran this another 3 times to verify, but got the same result. Larger images sizes have a drastic impact on startup time, since these need to be pulled from the Internet and are not cached locally. Images stored on ECR take even longer. From these findings, EC2 is preferred over Fargate for scaling unless working with small images. Another option would be to use ECS with the image caching feature, though this requires managing EC2 instances manually.
 
 
 \section{Conclusion}
+
+As a conclusion of our study, we could not explicitly say that one virtualization technology is superior to other as it depend on the different environments which they are operate and the ultimate decision will depend on your specific needs. 
+
+
+.... need more....
+
 
 
 \section{Division of Work}
