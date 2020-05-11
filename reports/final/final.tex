@@ -169,7 +169,7 @@ The first step to benchmarking with GBM-perf was to setup the images. For Docker
   \caption{Memory}
   \label{fig:gbmperfu2}
 \end{subfigure}
-\caption{GBM-perf-Utilizations}
+\caption{GBM-perf Utilization}
 \label{fig:gbmperfutilizations}
 \end{figure}
 
@@ -189,7 +189,7 @@ GBM-perf was run 5 times on each platform, each producing CPU and memory metrics
     \caption{runtime-2}
     \label{fig:gbmperfr2}
   \end{subfigure}
-  \caption{GBM-perf-runtime}
+  \caption{GBM-perf Runtime}
   \label{fig:rubis}
 \end{figure}
 
@@ -272,16 +272,6 @@ In addition to the benchmarks, we considered some other information for our comp
 \label{fig:rubis}
 \end{figure}
 
-\begin{table}[hbt!]
-    \begin{tabular}{|l|l|l|l|l|l|l|}
-    \hline
-                           & m5.xlarge & ECS     & c5.xlarge  & ECS     & t2.small  & ECS     \\ \hline
-    Resources (vCPU / RAM) & 4/16      & 4/16    & 4/8        & 4/8     & 1/2       & 1/2     \\ \hline
-    Cost / hr              & 0.192     & 0.23304 & 0.17       & 0.19748 & 0.023     & 0.04937 \\ \hline
-    \end{tabular}
-    \captionof{table}{cost comparisons} 
-\end{table}
-
 Measuring the startup time for EC2 instances involved writing a startup script that would print the timestamp right after the instance startup request was sent to AWS. The VM was then setup to print a timestamp when a custom systemd service was started on boot. This difference represents the effective time it would to successfully scale a service. Containers were measured similarly by taking the difference between the time the ECS service was updated with a higher number of replicas to when the entry command was run. We tested going from 0 to 1 replicas and from 1 to 3 replicas, but the startup time was the same. Despite assuming the opposite, VMs turned out to startup faster in all cases. This is due to how Fargate operates, as described earlier. Several different scenarios were tested. For EC2 we measure the t2.small instance type with an 8 GB EBS volume for both a plain Ubuntu image and RUBiS. We also tested GBM-perf on a m5.xlarge. These configurations would account for instance size, startup processes, and disk size.
 
 \begin{figure}[H]
@@ -292,6 +282,16 @@ Measuring the startup time for EC2 instances involved writing a startup script t
 \end{figure}
 
 The measured times were 22, 30, and 37 seconds (shown in figure 8). We found a smaller disk size resulted in a faster startup time due to having less data that needs to be copied. Additionally, the startup tasks of the RUBiS image took time to complete. For Fargate, we had the following configurations ([image, size, vCPU/memory]): [alpine, 3 MB, 4/16], [alpine, 3 MB, 1/2], [gbm-perf, 1.5 GB on ECR, 4/16], [gbm-perf, 1.5 GB, 4/16]. The resulting times for these were 30, 37, 117.5, and 137 seconds averaged across 3 runs. The longer time to start a container with lower resources was unexpected, and may be caused by the way Fargate does scheduling. We ran this another 3 times to verify, but got the same result. Larger images sizes have a drastic impact on startup time, since these need to be pulled from the Internet and are not cached locally. Images stored on ECR take even longer. From these findings, EC2 is preferred over Fargate for scaling unless working with small images. Another option would be to use ECS with the image caching feature, though this requires managing EC2 instances manually.
+
+\begin{table}[hbt!]
+  \begin{tabular}{|l|l|l|l|l|l|l|}
+  \hline
+                         & m5.xlarge & ECS     & c5.xlarge  & ECS     & t2.small  & ECS     \\ \hline
+  Resources (vCPU / RAM) & 4/16      & 4/16    & 4/8        & 4/8     & 1/2       & 1/2     \\ \hline
+  Cost / hr              & 0.192     & 0.23304 & 0.17       & 0.19748 & 0.023     & 0.04937 \\ \hline
+  \end{tabular}
+  \captionof{table}{Cost Comparison} 
+\end{table}
 
 Lastly, the cost data in Table 2 shows that EC2 instances cost less per resource. m5.xlarge instances cost \$0.192 per hour, while the same number of vCPUs and GB of RAM costs \$0.233 per hour. For small instances the comparison is even more extreme with \$0.023 for a t2.small and \$0.049 for a similar Fargate container, over twice as much. This concludes EC2 instances are more cost-effective for static workloads, and when considering the scalability of both services, for dynamic workloads as well.
 
